@@ -1,0 +1,5 @@
+net: "./ffn.prototxt"
+max_iter: 100
+base_lr: 0.001
+lr_policy: "fixed"
+solver_mode: GPU
