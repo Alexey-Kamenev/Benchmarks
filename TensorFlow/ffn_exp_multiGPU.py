@@ -10,7 +10,7 @@ from ffn import *
 tf.app.flags.DEFINE_integer('numGPUs', 4,
                             """How many GPUs to use.""")
 
-subMinibatchSize = 512
+subMinibatchSize = 2048
 minibatchSize = FLAGS.numGPUs * subMinibatchSize
 
 def aggregateGradients(subMinibatchGradients):

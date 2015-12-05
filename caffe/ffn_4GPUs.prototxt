@@ -8,7 +8,7 @@ layer {
     phase: TRAIN
   }
   data_param: {
-    batch_size: 8192
+    batch_size: 2048
     source: "/var/storage/shared/ipgsp/sys/jobs/application_1447977864059_0183/benchmarks/caffe/fake_data.lmdb"
     backend: LMDB
   }

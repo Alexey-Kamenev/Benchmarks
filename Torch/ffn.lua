@@ -22,7 +22,7 @@ mlp:add(Linear(hsize,hsize)):add(Transfer(true)) -- hidden layer 4
 mlp:add(Linear(hsize,osize)):add(cudnn.LogSoftMax()) -- output layer
 
 -- Fake data
-local bsize = 2048
+local bsize = 8192
 local inputCPU = torch.randn(bsize,isize)
 local input = torch.CudaTensor(inputCPU:size())
 local target = torch.IntTensor(bsize):random(1,bsize):cuda()

@@ -6,7 +6,7 @@ import ffn
 
 from ffn import *
 
-minibatchSize = 2048
+minibatchSize = 8192
 
 # Create the model
 if (FLAGS.noInputFeed):
