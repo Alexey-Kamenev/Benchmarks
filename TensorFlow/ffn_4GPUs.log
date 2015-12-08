@@ -1,0 +1,51 @@
+I tensorflow/core/common_runtime/local_device.cc:25] Local device intra op parallelism threads: 20
+I tensorflow/core/common_runtime/gpu/gpu_init.cc:88] Found device 0 with properties: 
+name: Tesla K40m
+major: 3 minor: 5 memoryClockRate (GHz) 0.745
+pciBusID 0000:0d:00.0
+Total memory: 11.25GiB
+Free memory: 11.12GiB
+I tensorflow/core/common_runtime/gpu/gpu_init.cc:88] Found device 1 with properties: 
+name: Tesla K40m
+major: 3 minor: 5 memoryClockRate (GHz) 0.745
+pciBusID 0000:0a:00.0
+Total memory: 11.25GiB
+Free memory: 11.12GiB
+I tensorflow/core/common_runtime/gpu/gpu_init.cc:88] Found device 2 with properties: 
+name: Tesla K40m
+major: 3 minor: 5 memoryClockRate (GHz) 0.745
+pciBusID 0000:2b:00.0
+Total memory: 11.25GiB
+Free memory: 11.12GiB
+I tensorflow/core/common_runtime/gpu/gpu_init.cc:88] Found device 3 with properties: 
+name: Tesla K40m
+major: 3 minor: 5 memoryClockRate (GHz) 0.745
+pciBusID 0000:30:00.0
+Total memory: 11.25GiB
+Free memory: 11.12GiB
+I tensorflow/core/common_runtime/gpu/gpu_init.cc:45] cannot enable peer access from device ordinal 0 to device ordinal 2
+I tensorflow/core/common_runtime/gpu/gpu_init.cc:45] cannot enable peer access from device ordinal 0 to device ordinal 3
+I tensorflow/core/common_runtime/gpu/gpu_init.cc:45] cannot enable peer access from device ordinal 1 to device ordinal 2
+I tensorflow/core/common_runtime/gpu/gpu_init.cc:45] cannot enable peer access from device ordinal 1 to device ordinal 3
+I tensorflow/core/common_runtime/gpu/gpu_init.cc:45] cannot enable peer access from device ordinal 2 to device ordinal 0
+I tensorflow/core/common_runtime/gpu/gpu_init.cc:45] cannot enable peer access from device ordinal 2 to device ordinal 1
+I tensorflow/core/common_runtime/gpu/gpu_init.cc:45] cannot enable peer access from device ordinal 3 to device ordinal 0
+I tensorflow/core/common_runtime/gpu/gpu_init.cc:45] cannot enable peer access from device ordinal 3 to device ordinal 1
+I tensorflow/core/common_runtime/gpu/gpu_init.cc:112] DMA: 0 1 2 3 
+I tensorflow/core/common_runtime/gpu/gpu_init.cc:122] 0:   Y Y N N 
+I tensorflow/core/common_runtime/gpu/gpu_init.cc:122] 1:   Y Y N N 
+I tensorflow/core/common_runtime/gpu/gpu_init.cc:122] 2:   N N Y Y 
+I tensorflow/core/common_runtime/gpu/gpu_init.cc:122] 3:   N N Y Y 
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:643] Creating TensorFlow device (/gpu:0) -> (device: 0, name: Tesla K40m, pci bus id: 0000:0d:00.0)
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:643] Creating TensorFlow device (/gpu:1) -> (device: 1, name: Tesla K40m, pci bus id: 0000:0a:00.0)
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:643] Creating TensorFlow device (/gpu:2) -> (device: 2, name: Tesla K40m, pci bus id: 0000:2b:00.0)
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:643] Creating TensorFlow device (/gpu:3) -> (device: 3, name: Tesla K40m, pci bus id: 0000:30:00.0)
+I tensorflow/core/common_runtime/gpu/gpu_region_allocator.cc:47] Setting region size to 11344381133
+I tensorflow/core/common_runtime/gpu/gpu_region_allocator.cc:47] Setting region size to 11344373351
+I tensorflow/core/common_runtime/gpu/gpu_region_allocator.cc:47] Setting region size to 11344381133
+I tensorflow/core/common_runtime/gpu/gpu_region_allocator.cc:47] Setting region size to 11344373351
+I tensorflow/core/common_runtime/local_session.cc:45] Local session inter op parallelism threads: 20
+*****************************Training on 4 GPUs***************************************
+MinibatchSize=8192, NumMinibatches=150.
+Training speed (samples/sec): Average=11255, Median=11381, Max=12359
+*************************************************************************************
