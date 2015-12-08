@@ -1,0 +1,928 @@
+-------------------------------------------------------------------
+Build info: 
+
+		Built time: Dec  4 2015 22:46:42
+		Last modified date: Fri Dec  4 18:04:52 2015
+		Build type: release
+		Math lib: acml
+		CUDA_PATH: /usr/local/cuda-7.0
+		CUB_PATH: /usr/local/cub-1.4.1
+		Build Branch: HEAD
+		Build SHA1: d5c23240b70a8d33fa9db23f272da5e521003b26
+-------------------------------------------------------------------
+running on localhost at 2015/12/05 00:14:08
+command line: 
+/var/storage/shared/ipgsp/sys/jobs/application_1447977864059_0206/cntkbin/bin/cntk configFile=/var/storage/shared/ipgsp/alexeyk/benchmarks/CNTK/ffn.config WorkDir=/var/storage/shared/ipgsp/sys/jobs/application_1447977864059_0206 DataDir=/hdfs/ipgsp/alexeyk ConfigName=tempname --none-- progressTracing=true stderr=/var/storage/shared/ipgsp/sys/jobs/application_1447977864059_0206/logs/1/out ModelDir=/var/storage/shared/ipgsp/sys/jobs/application_1447977864059_0206/models ConfigDir=/var/storage/shared/ipgsp/alexeyk/benchmarks/CNTK 
+
+>>>>>>>>>>>>>>>>>>>> RAW CONFIG (VARIABLES NOT RESOLVED) >>>>>>>>>>>>>>>>>>>>
+WorkDir1=.
+precision=float
+deviceId=Auto
+makeMode=false
+command=Train
+featureDim = 512
+labelDim = 10000
+hiddenDim = 2048
+parallelTrain=true
+prefetch=true
+Train=[
+    action=train
+    modelPath=$ModelDir$/cntk
+    deviceId=Auto
+    traceLevel=1
+    SimpleNetworkBuilder=[
+        layerSizes=$featureDim$:$hiddenDim$:$hiddenDim$:$hiddenDim$:$hiddenDim$:$labelDim$
+        trainingCriterion=CrossEntropyWithSoftmax
+        evalCriterion=ErrorPrediction
+        layerTypes=Sigmoid
+        applyMeanVarNorm=false
+        initValueScale=1.0
+        uniformInit=true
+        needPrior=false
+    ]
+    SGD=[
+        epochSize=262144
+        minibatchSize=8192
+        learningRatesPerMB=0.01
+        numMBsToShowResult=4
+        momentumPerSample=0
+        dropoutRate=0.0
+        maxEpochs=40
+        ParallelTrain=[
+            parallelizationMethod=DataParallelSGD
+            distributedMBReading=true
+            parallelizationStartEpoch=1
+            DataParallelSGD=[
+                gradientBits=1
+            ]
+        ]
+        gradUpdateType=None
+        normWithAveMultiplier=true
+        clippingThresholdPerSample=1#INF
+    ]
+]
+reader=[
+    readerType=UCIFastReader
+    file=$WorkDir1$/data.txt
+    features=[
+        dim=$featureDim$
+        start=1
+    ]
+    labels=[
+        dim=1
+        start=0
+	labelDim=$labelDim$
+	labelMappingFile=$WorkDir1$/labelmap.txt
+    ]
+]
+WorkDir=/var/storage/shared/ipgsp/sys/jobs/application_1447977864059_0206
+DataDir=/hdfs/ipgsp/alexeyk
+ConfigName=tempname
+--none--
+progressTracing=true
+stderr=/var/storage/shared/ipgsp/sys/jobs/application_1447977864059_0206/logs/1/out
+ModelDir=/var/storage/shared/ipgsp/sys/jobs/application_1447977864059_0206/models
+ConfigDir=/var/storage/shared/ipgsp/alexeyk/benchmarks/CNTK
+
+<<<<<<<<<<<<<<<<<<<< RAW CONFIG (VARIABLES NOT RESOLVED)  <<<<<<<<<<<<<<<<<<<<
+
+>>>>>>>>>>>>>>>>>>>> RAW CONFIG WITH ALL VARIABLES RESOLVED >>>>>>>>>>>>>>>>>>>>
+WorkDir1=.
+precision=float
+deviceId=Auto
+makeMode=false
+command=Train
+featureDim = 512
+labelDim = 10000
+hiddenDim = 2048
+parallelTrain=true
+prefetch=true
+Train=[
+    action=train
+    modelPath=/var/storage/shared/ipgsp/sys/jobs/application_1447977864059_0206/models/cntk
+    deviceId=Auto
+    traceLevel=1
+    SimpleNetworkBuilder=[
+        layerSizes=512:2048:2048:2048:2048:10000
+        trainingCriterion=CrossEntropyWithSoftmax
+        evalCriterion=ErrorPrediction
+        layerTypes=Sigmoid
+        applyMeanVarNorm=false
+        initValueScale=1.0
+        uniformInit=true
+        needPrior=false
+    ]
+    SGD=[
+        epochSize=262144
+        minibatchSize=8192
+        learningRatesPerMB=0.01
+        numMBsToShowResult=4
+        momentumPerSample=0
+        dropoutRate=0.0
+        maxEpochs=40
+        ParallelTrain=[
+            parallelizationMethod=DataParallelSGD
+            distributedMBReading=true
+            parallelizationStartEpoch=1
+            DataParallelSGD=[
+                gradientBits=1
+            ]
+        ]
+        gradUpdateType=None
+        normWithAveMultiplier=true
+        clippingThresholdPerSample=1#INF
+    ]
+]
+reader=[
+    readerType=UCIFastReader
+    file=./data.txt
+    features=[
+        dim=512
+        start=1
+    ]
+    labels=[
+        dim=1
+        start=0
+	labelDim=10000
+	labelMappingFile=./labelmap.txt
+    ]
+]
+WorkDir=/var/storage/shared/ipgsp/sys/jobs/application_1447977864059_0206
+DataDir=/hdfs/ipgsp/alexeyk
+ConfigName=tempname
+--none--
+progressTracing=true
+stderr=/var/storage/shared/ipgsp/sys/jobs/application_1447977864059_0206/logs/1/out
+ModelDir=/var/storage/shared/ipgsp/sys/jobs/application_1447977864059_0206/models
+ConfigDir=/var/storage/shared/ipgsp/alexeyk/benchmarks/CNTK
+
+<<<<<<<<<<<<<<<<<<<< RAW CONFIG WITH ALL VARIABLES RESOLVED <<<<<<<<<<<<<<<<<<<<
+
+>>>>>>>>>>>>>>>>>>>> PROCESSED CONFIG WITH ALL VARIABLES RESOLVED >>>>>>>>>>>>>>>>>>>>
+configparameters: ffn.config:--none--=true
+configparameters: ffn.config:command=Train
+configparameters: ffn.config:ConfigDir=/var/storage/shared/ipgsp/alexeyk/benchmarks/CNTK
+configparameters: ffn.config:ConfigName=tempname
+configparameters: ffn.config:DataDir=/hdfs/ipgsp/alexeyk
+configparameters: ffn.config:deviceId=Auto
+configparameters: ffn.config:featureDim=512
+configparameters: ffn.config:hiddenDim=2048
+configparameters: ffn.config:labelDim=10000
+configparameters: ffn.config:makeMode=false
+configparameters: ffn.config:ModelDir=/var/storage/shared/ipgsp/sys/jobs/application_1447977864059_0206/models
+configparameters: ffn.config:parallelTrain=true
+configparameters: ffn.config:precision=float
+configparameters: ffn.config:prefetch=true
+configparameters: ffn.config:progressTracing=true
+configparameters: ffn.config:reader=[
+    readerType=UCIFastReader
+    file=./data.txt
+    features=[
+        dim=512
+        start=1
+    ]
+    labels=[
+        dim=1
+        start=0
+	labelDim=10000
+	labelMappingFile=./labelmap.txt
+    ]
+]
+
+configparameters: ffn.config:stderr=/var/storage/shared/ipgsp/sys/jobs/application_1447977864059_0206/logs/1/out
+configparameters: ffn.config:Train=[
+    action=train
+    modelPath=/var/storage/shared/ipgsp/sys/jobs/application_1447977864059_0206/models/cntk
+    deviceId=Auto
+    traceLevel=1
+    SimpleNetworkBuilder=[
+        layerSizes=512:2048:2048:2048:2048:10000
+        trainingCriterion=CrossEntropyWithSoftmax
+        evalCriterion=ErrorPrediction
+        layerTypes=Sigmoid
+        applyMeanVarNorm=false
+        initValueScale=1.0
+        uniformInit=true
+        needPrior=false
+    ]
+    SGD=[
+        epochSize=262144
+        minibatchSize=8192
+        learningRatesPerMB=0.01
+        numMBsToShowResult=4
+        momentumPerSample=0
+        dropoutRate=0.0
+        maxEpochs=40
+        ParallelTrain=[
+            parallelizationMethod=DataParallelSGD
+            distributedMBReading=true
+            parallelizationStartEpoch=1
+            DataParallelSGD=[
+                gradientBits=1
+            ]
+        ]
+        gradUpdateType=None
+        normWithAveMultiplier=true
+        clippingThresholdPerSample=1#INF
+    ]
+]
+
+configparameters: ffn.config:WorkDir=/var/storage/shared/ipgsp/sys/jobs/application_1447977864059_0206
+configparameters: ffn.config:WorkDir1=.
+<<<<<<<<<<<<<<<<<<<< PROCESSED CONFIG WITH ALL VARIABLES RESOLVED <<<<<<<<<<<<<<<<<<<<
+command: Train 
+precision = float
+CNTKModelPath: /var/storage/shared/ipgsp/sys/jobs/application_1447977864059_0206/models/cntk
+CNTKCommandTrainInfo: Train : 40
+CNTKCommandTrainInfo: CNTKNoMoreCommands_Total : 40
+CNTKCommandTrainBegin: Train
+LockDevice: Locked GPU 2 to test availability.
+LockDevice: Unlocked GPU 2 after testing.
+LockDevice: Locked GPU 0 to test availability.
+LockDevice: Unlocked GPU 0 after testing.
+LockDevice: Locked GPU 1 to test availability.
+LockDevice: Unlocked GPU 1 after testing.
+LockDevice: Locked GPU 3 to test availability.
+LockDevice: Unlocked GPU 3 after testing.
+LockDevice: Locked GPU 2 for exclusive use.
+SimpleNetworkBuilder Using GPU 2
+Reading UCI file ./data.txt
+SetUniformRandomValue (GPU): creating curand object with seed 1, sizeof(ElemType)==4
+
+
+Allocating matrices for forward propagation.
+
+
+Validating for node CrossEntropyWithSoftmax. 27 nodes to process in pass 1.
+
+Validating --> labels = InputValue -> [10000, MBSize 3]
+Validating --> W4 = LearnableParameter -> [10000, 2048]
+Validating --> W3 = LearnableParameter -> [2048, 2048]
+Validating --> W2 = LearnableParameter -> [2048, 2048]
+Validating --> W1 = LearnableParameter -> [2048, 2048]
+Validating --> W0 = LearnableParameter -> [2048, 512]
+Validating --> features = InputValue -> [512, MBSize 3]
+Validating --> W0*features = Times(W0[2048, 512], features[512, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B0 = LearnableParameter -> [2048, 1]
+Validating --> W0*features+B0 = Plus(W0*features[2048, MBSize 3], B0[2048, 1]) -> [2048, MBSize 3]
+Validating --> H1 = Sigmoid(W0*features+B0[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W1*H1 = Times(W1[2048, 2048], H1[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B1 = LearnableParameter -> [2048, 1]
+Validating --> W1*H1+B1 = Plus(W1*H1[2048, MBSize 3], B1[2048, 1]) -> [2048, MBSize 3]
+Validating --> H2 = Sigmoid(W1*H1+B1[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W2*H2 = Times(W2[2048, 2048], H2[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B2 = LearnableParameter -> [2048, 1]
+Validating --> W2*H2+B2 = Plus(W2*H2[2048, MBSize 3], B2[2048, 1]) -> [2048, MBSize 3]
+Validating --> H3 = Sigmoid(W2*H2+B2[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W3*H3 = Times(W3[2048, 2048], H3[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B3 = LearnableParameter -> [2048, 1]
+Validating --> W3*H3+B3 = Plus(W3*H3[2048, MBSize 3], B3[2048, 1]) -> [2048, MBSize 3]
+Validating --> H4 = Sigmoid(W3*H3+B3[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W4*H3 = Times(W4[10000, 2048], H4[2048, MBSize 3]) -> [10000, MBSize 3]
+Validating --> B4 = LearnableParameter -> [10000, 1]
+Validating --> HLast = Plus(W4*H3[10000, MBSize 3], B4[10000, 1]) -> [10000, MBSize 3]
+Validating --> CrossEntropyWithSoftmax = CrossEntropyWithSoftmax(labels[10000, MBSize 3], HLast[10000, MBSize 3]) -> [1, 1]
+
+Validating for node CrossEntropyWithSoftmax. 15 nodes to process in pass 2.
+
+Validating --> labels = InputValue -> [10000, MBSize 3]
+Validating --> W4 = LearnableParameter -> [10000, 2048]
+Validating --> W3 = LearnableParameter -> [2048, 2048]
+Validating --> W2 = LearnableParameter -> [2048, 2048]
+Validating --> W1 = LearnableParameter -> [2048, 2048]
+Validating --> W0 = LearnableParameter -> [2048, 512]
+Validating --> features = InputValue -> [512, MBSize 3]
+Validating --> W0*features = Times(W0[2048, 512], features[512, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B0 = LearnableParameter -> [2048, 1]
+Validating --> W0*features+B0 = Plus(W0*features[2048, MBSize 3], B0[2048, 1]) -> [2048, MBSize 3]
+Validating --> H1 = Sigmoid(W0*features+B0[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W1*H1 = Times(W1[2048, 2048], H1[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B1 = LearnableParameter -> [2048, 1]
+Validating --> W1*H1+B1 = Plus(W1*H1[2048, MBSize 3], B1[2048, 1]) -> [2048, MBSize 3]
+Validating --> H2 = Sigmoid(W1*H1+B1[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W2*H2 = Times(W2[2048, 2048], H2[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B2 = LearnableParameter -> [2048, 1]
+Validating --> W2*H2+B2 = Plus(W2*H2[2048, MBSize 3], B2[2048, 1]) -> [2048, MBSize 3]
+Validating --> H3 = Sigmoid(W2*H2+B2[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W3*H3 = Times(W3[2048, 2048], H3[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B3 = LearnableParameter -> [2048, 1]
+Validating --> W3*H3+B3 = Plus(W3*H3[2048, MBSize 3], B3[2048, 1]) -> [2048, MBSize 3]
+Validating --> H4 = Sigmoid(W3*H3+B3[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W4*H3 = Times(W4[10000, 2048], H4[2048, MBSize 3]) -> [10000, MBSize 3]
+Validating --> B4 = LearnableParameter -> [10000, 1]
+Validating --> HLast = Plus(W4*H3[10000, MBSize 3], B4[10000, 1]) -> [10000, MBSize 3]
+Validating --> CrossEntropyWithSoftmax = CrossEntropyWithSoftmax(labels[10000, MBSize 3], HLast[10000, MBSize 3]) -> [1, 1]
+
+Validating for node CrossEntropyWithSoftmax, final verification.
+
+Validating --> labels = InputValue -> [10000, MBSize 3]
+Validating --> W4 = LearnableParameter -> [10000, 2048]
+Validating --> W3 = LearnableParameter -> [2048, 2048]
+Validating --> W2 = LearnableParameter -> [2048, 2048]
+Validating --> W1 = LearnableParameter -> [2048, 2048]
+Validating --> W0 = LearnableParameter -> [2048, 512]
+Validating --> features = InputValue -> [512, MBSize 3]
+Validating --> W0*features = Times(W0[2048, 512], features[512, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B0 = LearnableParameter -> [2048, 1]
+Validating --> W0*features+B0 = Plus(W0*features[2048, MBSize 3], B0[2048, 1]) -> [2048, MBSize 3]
+Validating --> H1 = Sigmoid(W0*features+B0[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W1*H1 = Times(W1[2048, 2048], H1[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B1 = LearnableParameter -> [2048, 1]
+Validating --> W1*H1+B1 = Plus(W1*H1[2048, MBSize 3], B1[2048, 1]) -> [2048, MBSize 3]
+Validating --> H2 = Sigmoid(W1*H1+B1[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W2*H2 = Times(W2[2048, 2048], H2[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B2 = LearnableParameter -> [2048, 1]
+Validating --> W2*H2+B2 = Plus(W2*H2[2048, MBSize 3], B2[2048, 1]) -> [2048, MBSize 3]
+Validating --> H3 = Sigmoid(W2*H2+B2[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W3*H3 = Times(W3[2048, 2048], H3[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B3 = LearnableParameter -> [2048, 1]
+Validating --> W3*H3+B3 = Plus(W3*H3[2048, MBSize 3], B3[2048, 1]) -> [2048, MBSize 3]
+Validating --> H4 = Sigmoid(W3*H3+B3[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W4*H3 = Times(W4[10000, 2048], H4[2048, MBSize 3]) -> [10000, MBSize 3]
+Validating --> B4 = LearnableParameter -> [10000, 1]
+Validating --> HLast = Plus(W4*H3[10000, MBSize 3], B4[10000, 1]) -> [10000, MBSize 3]
+Validating --> CrossEntropyWithSoftmax = CrossEntropyWithSoftmax(labels[10000, MBSize 3], HLast[10000, MBSize 3]) -> [1, 1]
+
+11 out of 27 nodes do not share the minibatch layout with the input data.
+
+
+
+Validating for node CrossEntropyWithSoftmax. 27 nodes to process in pass 1.
+
+Validating --> labels = InputValue -> [10000, MBSize 3]
+Validating --> W4 = LearnableParameter -> [10000, 2048]
+Validating --> W3 = LearnableParameter -> [2048, 2048]
+Validating --> W2 = LearnableParameter -> [2048, 2048]
+Validating --> W1 = LearnableParameter -> [2048, 2048]
+Validating --> W0 = LearnableParameter -> [2048, 512]
+Validating --> features = InputValue -> [512, MBSize 3]
+Validating --> W0*features = Times(W0[2048, 512], features[512, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B0 = LearnableParameter -> [2048, 1]
+Validating --> W0*features+B0 = Plus(W0*features[2048, MBSize 3], B0[2048, 1]) -> [2048, MBSize 3]
+Validating --> H1 = Sigmoid(W0*features+B0[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W1*H1 = Times(W1[2048, 2048], H1[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B1 = LearnableParameter -> [2048, 1]
+Validating --> W1*H1+B1 = Plus(W1*H1[2048, MBSize 3], B1[2048, 1]) -> [2048, MBSize 3]
+Validating --> H2 = Sigmoid(W1*H1+B1[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W2*H2 = Times(W2[2048, 2048], H2[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B2 = LearnableParameter -> [2048, 1]
+Validating --> W2*H2+B2 = Plus(W2*H2[2048, MBSize 3], B2[2048, 1]) -> [2048, MBSize 3]
+Validating --> H3 = Sigmoid(W2*H2+B2[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W3*H3 = Times(W3[2048, 2048], H3[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B3 = LearnableParameter -> [2048, 1]
+Validating --> W3*H3+B3 = Plus(W3*H3[2048, MBSize 3], B3[2048, 1]) -> [2048, MBSize 3]
+Validating --> H4 = Sigmoid(W3*H3+B3[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W4*H3 = Times(W4[10000, 2048], H4[2048, MBSize 3]) -> [10000, MBSize 3]
+Validating --> B4 = LearnableParameter -> [10000, 1]
+Validating --> HLast = Plus(W4*H3[10000, MBSize 3], B4[10000, 1]) -> [10000, MBSize 3]
+Validating --> CrossEntropyWithSoftmax = CrossEntropyWithSoftmax(labels[10000, MBSize 3], HLast[10000, MBSize 3]) -> [1, 1]
+
+Validating for node CrossEntropyWithSoftmax. 15 nodes to process in pass 2.
+
+Validating --> labels = InputValue -> [10000, MBSize 3]
+Validating --> W4 = LearnableParameter -> [10000, 2048]
+Validating --> W3 = LearnableParameter -> [2048, 2048]
+Validating --> W2 = LearnableParameter -> [2048, 2048]
+Validating --> W1 = LearnableParameter -> [2048, 2048]
+Validating --> W0 = LearnableParameter -> [2048, 512]
+Validating --> features = InputValue -> [512, MBSize 3]
+Validating --> W0*features = Times(W0[2048, 512], features[512, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B0 = LearnableParameter -> [2048, 1]
+Validating --> W0*features+B0 = Plus(W0*features[2048, MBSize 3], B0[2048, 1]) -> [2048, MBSize 3]
+Validating --> H1 = Sigmoid(W0*features+B0[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W1*H1 = Times(W1[2048, 2048], H1[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B1 = LearnableParameter -> [2048, 1]
+Validating --> W1*H1+B1 = Plus(W1*H1[2048, MBSize 3], B1[2048, 1]) -> [2048, MBSize 3]
+Validating --> H2 = Sigmoid(W1*H1+B1[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W2*H2 = Times(W2[2048, 2048], H2[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B2 = LearnableParameter -> [2048, 1]
+Validating --> W2*H2+B2 = Plus(W2*H2[2048, MBSize 3], B2[2048, 1]) -> [2048, MBSize 3]
+Validating --> H3 = Sigmoid(W2*H2+B2[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W3*H3 = Times(W3[2048, 2048], H3[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B3 = LearnableParameter -> [2048, 1]
+Validating --> W3*H3+B3 = Plus(W3*H3[2048, MBSize 3], B3[2048, 1]) -> [2048, MBSize 3]
+Validating --> H4 = Sigmoid(W3*H3+B3[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W4*H3 = Times(W4[10000, 2048], H4[2048, MBSize 3]) -> [10000, MBSize 3]
+Validating --> B4 = LearnableParameter -> [10000, 1]
+Validating --> HLast = Plus(W4*H3[10000, MBSize 3], B4[10000, 1]) -> [10000, MBSize 3]
+Validating --> CrossEntropyWithSoftmax = CrossEntropyWithSoftmax(labels[10000, MBSize 3], HLast[10000, MBSize 3]) -> [1, 1]
+
+Validating for node CrossEntropyWithSoftmax, final verification.
+
+Validating --> labels = InputValue -> [10000, MBSize 3]
+Validating --> W4 = LearnableParameter -> [10000, 2048]
+Validating --> W3 = LearnableParameter -> [2048, 2048]
+Validating --> W2 = LearnableParameter -> [2048, 2048]
+Validating --> W1 = LearnableParameter -> [2048, 2048]
+Validating --> W0 = LearnableParameter -> [2048, 512]
+Validating --> features = InputValue -> [512, MBSize 3]
+Validating --> W0*features = Times(W0[2048, 512], features[512, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B0 = LearnableParameter -> [2048, 1]
+Validating --> W0*features+B0 = Plus(W0*features[2048, MBSize 3], B0[2048, 1]) -> [2048, MBSize 3]
+Validating --> H1 = Sigmoid(W0*features+B0[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W1*H1 = Times(W1[2048, 2048], H1[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B1 = LearnableParameter -> [2048, 1]
+Validating --> W1*H1+B1 = Plus(W1*H1[2048, MBSize 3], B1[2048, 1]) -> [2048, MBSize 3]
+Validating --> H2 = Sigmoid(W1*H1+B1[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W2*H2 = Times(W2[2048, 2048], H2[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B2 = LearnableParameter -> [2048, 1]
+Validating --> W2*H2+B2 = Plus(W2*H2[2048, MBSize 3], B2[2048, 1]) -> [2048, MBSize 3]
+Validating --> H3 = Sigmoid(W2*H2+B2[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W3*H3 = Times(W3[2048, 2048], H3[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B3 = LearnableParameter -> [2048, 1]
+Validating --> W3*H3+B3 = Plus(W3*H3[2048, MBSize 3], B3[2048, 1]) -> [2048, MBSize 3]
+Validating --> H4 = Sigmoid(W3*H3+B3[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W4*H3 = Times(W4[10000, 2048], H4[2048, MBSize 3]) -> [10000, MBSize 3]
+Validating --> B4 = LearnableParameter -> [10000, 1]
+Validating --> HLast = Plus(W4*H3[10000, MBSize 3], B4[10000, 1]) -> [10000, MBSize 3]
+Validating --> CrossEntropyWithSoftmax = CrossEntropyWithSoftmax(labels[10000, MBSize 3], HLast[10000, MBSize 3]) -> [1, 1]
+
+11 out of 27 nodes do not share the minibatch layout with the input data.
+
+
+
+Validating for node HLast. 25 nodes to process in pass 1.
+
+Validating --> W4 = LearnableParameter -> [10000, 2048]
+Validating --> W3 = LearnableParameter -> [2048, 2048]
+Validating --> W2 = LearnableParameter -> [2048, 2048]
+Validating --> W1 = LearnableParameter -> [2048, 2048]
+Validating --> W0 = LearnableParameter -> [2048, 512]
+Validating --> features = InputValue -> [512, MBSize 3]
+Validating --> W0*features = Times(W0[2048, 512], features[512, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B0 = LearnableParameter -> [2048, 1]
+Validating --> W0*features+B0 = Plus(W0*features[2048, MBSize 3], B0[2048, 1]) -> [2048, MBSize 3]
+Validating --> H1 = Sigmoid(W0*features+B0[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W1*H1 = Times(W1[2048, 2048], H1[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B1 = LearnableParameter -> [2048, 1]
+Validating --> W1*H1+B1 = Plus(W1*H1[2048, MBSize 3], B1[2048, 1]) -> [2048, MBSize 3]
+Validating --> H2 = Sigmoid(W1*H1+B1[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W2*H2 = Times(W2[2048, 2048], H2[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B2 = LearnableParameter -> [2048, 1]
+Validating --> W2*H2+B2 = Plus(W2*H2[2048, MBSize 3], B2[2048, 1]) -> [2048, MBSize 3]
+Validating --> H3 = Sigmoid(W2*H2+B2[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W3*H3 = Times(W3[2048, 2048], H3[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B3 = LearnableParameter -> [2048, 1]
+Validating --> W3*H3+B3 = Plus(W3*H3[2048, MBSize 3], B3[2048, 1]) -> [2048, MBSize 3]
+Validating --> H4 = Sigmoid(W3*H3+B3[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W4*H3 = Times(W4[10000, 2048], H4[2048, MBSize 3]) -> [10000, MBSize 3]
+Validating --> B4 = LearnableParameter -> [10000, 1]
+Validating --> HLast = Plus(W4*H3[10000, MBSize 3], B4[10000, 1]) -> [10000, MBSize 3]
+
+Validating for node HLast. 14 nodes to process in pass 2.
+
+Validating --> W4 = LearnableParameter -> [10000, 2048]
+Validating --> W3 = LearnableParameter -> [2048, 2048]
+Validating --> W2 = LearnableParameter -> [2048, 2048]
+Validating --> W1 = LearnableParameter -> [2048, 2048]
+Validating --> W0 = LearnableParameter -> [2048, 512]
+Validating --> features = InputValue -> [512, MBSize 3]
+Validating --> W0*features = Times(W0[2048, 512], features[512, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B0 = LearnableParameter -> [2048, 1]
+Validating --> W0*features+B0 = Plus(W0*features[2048, MBSize 3], B0[2048, 1]) -> [2048, MBSize 3]
+Validating --> H1 = Sigmoid(W0*features+B0[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W1*H1 = Times(W1[2048, 2048], H1[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B1 = LearnableParameter -> [2048, 1]
+Validating --> W1*H1+B1 = Plus(W1*H1[2048, MBSize 3], B1[2048, 1]) -> [2048, MBSize 3]
+Validating --> H2 = Sigmoid(W1*H1+B1[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W2*H2 = Times(W2[2048, 2048], H2[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B2 = LearnableParameter -> [2048, 1]
+Validating --> W2*H2+B2 = Plus(W2*H2[2048, MBSize 3], B2[2048, 1]) -> [2048, MBSize 3]
+Validating --> H3 = Sigmoid(W2*H2+B2[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W3*H3 = Times(W3[2048, 2048], H3[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B3 = LearnableParameter -> [2048, 1]
+Validating --> W3*H3+B3 = Plus(W3*H3[2048, MBSize 3], B3[2048, 1]) -> [2048, MBSize 3]
+Validating --> H4 = Sigmoid(W3*H3+B3[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W4*H3 = Times(W4[10000, 2048], H4[2048, MBSize 3]) -> [10000, MBSize 3]
+Validating --> B4 = LearnableParameter -> [10000, 1]
+Validating --> HLast = Plus(W4*H3[10000, MBSize 3], B4[10000, 1]) -> [10000, MBSize 3]
+
+Validating for node HLast, final verification.
+
+Validating --> W4 = LearnableParameter -> [10000, 2048]
+Validating --> W3 = LearnableParameter -> [2048, 2048]
+Validating --> W2 = LearnableParameter -> [2048, 2048]
+Validating --> W1 = LearnableParameter -> [2048, 2048]
+Validating --> W0 = LearnableParameter -> [2048, 512]
+Validating --> features = InputValue -> [512, MBSize 3]
+Validating --> W0*features = Times(W0[2048, 512], features[512, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B0 = LearnableParameter -> [2048, 1]
+Validating --> W0*features+B0 = Plus(W0*features[2048, MBSize 3], B0[2048, 1]) -> [2048, MBSize 3]
+Validating --> H1 = Sigmoid(W0*features+B0[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W1*H1 = Times(W1[2048, 2048], H1[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B1 = LearnableParameter -> [2048, 1]
+Validating --> W1*H1+B1 = Plus(W1*H1[2048, MBSize 3], B1[2048, 1]) -> [2048, MBSize 3]
+Validating --> H2 = Sigmoid(W1*H1+B1[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W2*H2 = Times(W2[2048, 2048], H2[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B2 = LearnableParameter -> [2048, 1]
+Validating --> W2*H2+B2 = Plus(W2*H2[2048, MBSize 3], B2[2048, 1]) -> [2048, MBSize 3]
+Validating --> H3 = Sigmoid(W2*H2+B2[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W3*H3 = Times(W3[2048, 2048], H3[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B3 = LearnableParameter -> [2048, 1]
+Validating --> W3*H3+B3 = Plus(W3*H3[2048, MBSize 3], B3[2048, 1]) -> [2048, MBSize 3]
+Validating --> H4 = Sigmoid(W3*H3+B3[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W4*H3 = Times(W4[10000, 2048], H4[2048, MBSize 3]) -> [10000, MBSize 3]
+Validating --> B4 = LearnableParameter -> [10000, 1]
+Validating --> HLast = Plus(W4*H3[10000, MBSize 3], B4[10000, 1]) -> [10000, MBSize 3]
+
+10 out of 25 nodes do not share the minibatch layout with the input data.
+
+
+
+Validating for node HLast. 25 nodes to process in pass 1.
+
+Validating --> W4 = LearnableParameter -> [10000, 2048]
+Validating --> W3 = LearnableParameter -> [2048, 2048]
+Validating --> W2 = LearnableParameter -> [2048, 2048]
+Validating --> W1 = LearnableParameter -> [2048, 2048]
+Validating --> W0 = LearnableParameter -> [2048, 512]
+Validating --> features = InputValue -> [512, MBSize 3]
+Validating --> W0*features = Times(W0[2048, 512], features[512, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B0 = LearnableParameter -> [2048, 1]
+Validating --> W0*features+B0 = Plus(W0*features[2048, MBSize 3], B0[2048, 1]) -> [2048, MBSize 3]
+Validating --> H1 = Sigmoid(W0*features+B0[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W1*H1 = Times(W1[2048, 2048], H1[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B1 = LearnableParameter -> [2048, 1]
+Validating --> W1*H1+B1 = Plus(W1*H1[2048, MBSize 3], B1[2048, 1]) -> [2048, MBSize 3]
+Validating --> H2 = Sigmoid(W1*H1+B1[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W2*H2 = Times(W2[2048, 2048], H2[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B2 = LearnableParameter -> [2048, 1]
+Validating --> W2*H2+B2 = Plus(W2*H2[2048, MBSize 3], B2[2048, 1]) -> [2048, MBSize 3]
+Validating --> H3 = Sigmoid(W2*H2+B2[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W3*H3 = Times(W3[2048, 2048], H3[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B3 = LearnableParameter -> [2048, 1]
+Validating --> W3*H3+B3 = Plus(W3*H3[2048, MBSize 3], B3[2048, 1]) -> [2048, MBSize 3]
+Validating --> H4 = Sigmoid(W3*H3+B3[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W4*H3 = Times(W4[10000, 2048], H4[2048, MBSize 3]) -> [10000, MBSize 3]
+Validating --> B4 = LearnableParameter -> [10000, 1]
+Validating --> HLast = Plus(W4*H3[10000, MBSize 3], B4[10000, 1]) -> [10000, MBSize 3]
+
+Validating for node HLast. 14 nodes to process in pass 2.
+
+Validating --> W4 = LearnableParameter -> [10000, 2048]
+Validating --> W3 = LearnableParameter -> [2048, 2048]
+Validating --> W2 = LearnableParameter -> [2048, 2048]
+Validating --> W1 = LearnableParameter -> [2048, 2048]
+Validating --> W0 = LearnableParameter -> [2048, 512]
+Validating --> features = InputValue -> [512, MBSize 3]
+Validating --> W0*features = Times(W0[2048, 512], features[512, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B0 = LearnableParameter -> [2048, 1]
+Validating --> W0*features+B0 = Plus(W0*features[2048, MBSize 3], B0[2048, 1]) -> [2048, MBSize 3]
+Validating --> H1 = Sigmoid(W0*features+B0[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W1*H1 = Times(W1[2048, 2048], H1[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B1 = LearnableParameter -> [2048, 1]
+Validating --> W1*H1+B1 = Plus(W1*H1[2048, MBSize 3], B1[2048, 1]) -> [2048, MBSize 3]
+Validating --> H2 = Sigmoid(W1*H1+B1[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W2*H2 = Times(W2[2048, 2048], H2[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B2 = LearnableParameter -> [2048, 1]
+Validating --> W2*H2+B2 = Plus(W2*H2[2048, MBSize 3], B2[2048, 1]) -> [2048, MBSize 3]
+Validating --> H3 = Sigmoid(W2*H2+B2[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W3*H3 = Times(W3[2048, 2048], H3[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B3 = LearnableParameter -> [2048, 1]
+Validating --> W3*H3+B3 = Plus(W3*H3[2048, MBSize 3], B3[2048, 1]) -> [2048, MBSize 3]
+Validating --> H4 = Sigmoid(W3*H3+B3[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W4*H3 = Times(W4[10000, 2048], H4[2048, MBSize 3]) -> [10000, MBSize 3]
+Validating --> B4 = LearnableParameter -> [10000, 1]
+Validating --> HLast = Plus(W4*H3[10000, MBSize 3], B4[10000, 1]) -> [10000, MBSize 3]
+
+Validating for node HLast, final verification.
+
+Validating --> W4 = LearnableParameter -> [10000, 2048]
+Validating --> W3 = LearnableParameter -> [2048, 2048]
+Validating --> W2 = LearnableParameter -> [2048, 2048]
+Validating --> W1 = LearnableParameter -> [2048, 2048]
+Validating --> W0 = LearnableParameter -> [2048, 512]
+Validating --> features = InputValue -> [512, MBSize 3]
+Validating --> W0*features = Times(W0[2048, 512], features[512, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B0 = LearnableParameter -> [2048, 1]
+Validating --> W0*features+B0 = Plus(W0*features[2048, MBSize 3], B0[2048, 1]) -> [2048, MBSize 3]
+Validating --> H1 = Sigmoid(W0*features+B0[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W1*H1 = Times(W1[2048, 2048], H1[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B1 = LearnableParameter -> [2048, 1]
+Validating --> W1*H1+B1 = Plus(W1*H1[2048, MBSize 3], B1[2048, 1]) -> [2048, MBSize 3]
+Validating --> H2 = Sigmoid(W1*H1+B1[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W2*H2 = Times(W2[2048, 2048], H2[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B2 = LearnableParameter -> [2048, 1]
+Validating --> W2*H2+B2 = Plus(W2*H2[2048, MBSize 3], B2[2048, 1]) -> [2048, MBSize 3]
+Validating --> H3 = Sigmoid(W2*H2+B2[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W3*H3 = Times(W3[2048, 2048], H3[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B3 = LearnableParameter -> [2048, 1]
+Validating --> W3*H3+B3 = Plus(W3*H3[2048, MBSize 3], B3[2048, 1]) -> [2048, MBSize 3]
+Validating --> H4 = Sigmoid(W3*H3+B3[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W4*H3 = Times(W4[10000, 2048], H4[2048, MBSize 3]) -> [10000, MBSize 3]
+Validating --> B4 = LearnableParameter -> [10000, 1]
+Validating --> HLast = Plus(W4*H3[10000, MBSize 3], B4[10000, 1]) -> [10000, MBSize 3]
+
+10 out of 25 nodes do not share the minibatch layout with the input data.
+
+
+
+Validating for node EvalErrorPrediction. 27 nodes to process in pass 1.
+
+Validating --> labels = InputValue -> [10000, MBSize 3]
+Validating --> W4 = LearnableParameter -> [10000, 2048]
+Validating --> W3 = LearnableParameter -> [2048, 2048]
+Validating --> W2 = LearnableParameter -> [2048, 2048]
+Validating --> W1 = LearnableParameter -> [2048, 2048]
+Validating --> W0 = LearnableParameter -> [2048, 512]
+Validating --> features = InputValue -> [512, MBSize 3]
+Validating --> W0*features = Times(W0[2048, 512], features[512, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B0 = LearnableParameter -> [2048, 1]
+Validating --> W0*features+B0 = Plus(W0*features[2048, MBSize 3], B0[2048, 1]) -> [2048, MBSize 3]
+Validating --> H1 = Sigmoid(W0*features+B0[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W1*H1 = Times(W1[2048, 2048], H1[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B1 = LearnableParameter -> [2048, 1]
+Validating --> W1*H1+B1 = Plus(W1*H1[2048, MBSize 3], B1[2048, 1]) -> [2048, MBSize 3]
+Validating --> H2 = Sigmoid(W1*H1+B1[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W2*H2 = Times(W2[2048, 2048], H2[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B2 = LearnableParameter -> [2048, 1]
+Validating --> W2*H2+B2 = Plus(W2*H2[2048, MBSize 3], B2[2048, 1]) -> [2048, MBSize 3]
+Validating --> H3 = Sigmoid(W2*H2+B2[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W3*H3 = Times(W3[2048, 2048], H3[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B3 = LearnableParameter -> [2048, 1]
+Validating --> W3*H3+B3 = Plus(W3*H3[2048, MBSize 3], B3[2048, 1]) -> [2048, MBSize 3]
+Validating --> H4 = Sigmoid(W3*H3+B3[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W4*H3 = Times(W4[10000, 2048], H4[2048, MBSize 3]) -> [10000, MBSize 3]
+Validating --> B4 = LearnableParameter -> [10000, 1]
+Validating --> HLast = Plus(W4*H3[10000, MBSize 3], B4[10000, 1]) -> [10000, MBSize 3]
+Validating --> EvalErrorPrediction = ErrorPrediction(labels[10000, MBSize 3], HLast[10000, MBSize 3]) -> [1, 1]
+
+Validating for node EvalErrorPrediction. 15 nodes to process in pass 2.
+
+Validating --> labels = InputValue -> [10000, MBSize 3]
+Validating --> W4 = LearnableParameter -> [10000, 2048]
+Validating --> W3 = LearnableParameter -> [2048, 2048]
+Validating --> W2 = LearnableParameter -> [2048, 2048]
+Validating --> W1 = LearnableParameter -> [2048, 2048]
+Validating --> W0 = LearnableParameter -> [2048, 512]
+Validating --> features = InputValue -> [512, MBSize 3]
+Validating --> W0*features = Times(W0[2048, 512], features[512, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B0 = LearnableParameter -> [2048, 1]
+Validating --> W0*features+B0 = Plus(W0*features[2048, MBSize 3], B0[2048, 1]) -> [2048, MBSize 3]
+Validating --> H1 = Sigmoid(W0*features+B0[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W1*H1 = Times(W1[2048, 2048], H1[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B1 = LearnableParameter -> [2048, 1]
+Validating --> W1*H1+B1 = Plus(W1*H1[2048, MBSize 3], B1[2048, 1]) -> [2048, MBSize 3]
+Validating --> H2 = Sigmoid(W1*H1+B1[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W2*H2 = Times(W2[2048, 2048], H2[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B2 = LearnableParameter -> [2048, 1]
+Validating --> W2*H2+B2 = Plus(W2*H2[2048, MBSize 3], B2[2048, 1]) -> [2048, MBSize 3]
+Validating --> H3 = Sigmoid(W2*H2+B2[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W3*H3 = Times(W3[2048, 2048], H3[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B3 = LearnableParameter -> [2048, 1]
+Validating --> W3*H3+B3 = Plus(W3*H3[2048, MBSize 3], B3[2048, 1]) -> [2048, MBSize 3]
+Validating --> H4 = Sigmoid(W3*H3+B3[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W4*H3 = Times(W4[10000, 2048], H4[2048, MBSize 3]) -> [10000, MBSize 3]
+Validating --> B4 = LearnableParameter -> [10000, 1]
+Validating --> HLast = Plus(W4*H3[10000, MBSize 3], B4[10000, 1]) -> [10000, MBSize 3]
+Validating --> EvalErrorPrediction = ErrorPrediction(labels[10000, MBSize 3], HLast[10000, MBSize 3]) -> [1, 1]
+
+Validating for node EvalErrorPrediction, final verification.
+
+Validating --> labels = InputValue -> [10000, MBSize 3]
+Validating --> W4 = LearnableParameter -> [10000, 2048]
+Validating --> W3 = LearnableParameter -> [2048, 2048]
+Validating --> W2 = LearnableParameter -> [2048, 2048]
+Validating --> W1 = LearnableParameter -> [2048, 2048]
+Validating --> W0 = LearnableParameter -> [2048, 512]
+Validating --> features = InputValue -> [512, MBSize 3]
+Validating --> W0*features = Times(W0[2048, 512], features[512, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B0 = LearnableParameter -> [2048, 1]
+Validating --> W0*features+B0 = Plus(W0*features[2048, MBSize 3], B0[2048, 1]) -> [2048, MBSize 3]
+Validating --> H1 = Sigmoid(W0*features+B0[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W1*H1 = Times(W1[2048, 2048], H1[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B1 = LearnableParameter -> [2048, 1]
+Validating --> W1*H1+B1 = Plus(W1*H1[2048, MBSize 3], B1[2048, 1]) -> [2048, MBSize 3]
+Validating --> H2 = Sigmoid(W1*H1+B1[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W2*H2 = Times(W2[2048, 2048], H2[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B2 = LearnableParameter -> [2048, 1]
+Validating --> W2*H2+B2 = Plus(W2*H2[2048, MBSize 3], B2[2048, 1]) -> [2048, MBSize 3]
+Validating --> H3 = Sigmoid(W2*H2+B2[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W3*H3 = Times(W3[2048, 2048], H3[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B3 = LearnableParameter -> [2048, 1]
+Validating --> W3*H3+B3 = Plus(W3*H3[2048, MBSize 3], B3[2048, 1]) -> [2048, MBSize 3]
+Validating --> H4 = Sigmoid(W3*H3+B3[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W4*H3 = Times(W4[10000, 2048], H4[2048, MBSize 3]) -> [10000, MBSize 3]
+Validating --> B4 = LearnableParameter -> [10000, 1]
+Validating --> HLast = Plus(W4*H3[10000, MBSize 3], B4[10000, 1]) -> [10000, MBSize 3]
+Validating --> EvalErrorPrediction = ErrorPrediction(labels[10000, MBSize 3], HLast[10000, MBSize 3]) -> [1, 1]
+
+11 out of 27 nodes do not share the minibatch layout with the input data.
+
+
+
+Validating for node EvalErrorPrediction. 27 nodes to process in pass 1.
+
+Validating --> labels = InputValue -> [10000, MBSize 3]
+Validating --> W4 = LearnableParameter -> [10000, 2048]
+Validating --> W3 = LearnableParameter -> [2048, 2048]
+Validating --> W2 = LearnableParameter -> [2048, 2048]
+Validating --> W1 = LearnableParameter -> [2048, 2048]
+Validating --> W0 = LearnableParameter -> [2048, 512]
+Validating --> features = InputValue -> [512, MBSize 3]
+Validating --> W0*features = Times(W0[2048, 512], features[512, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B0 = LearnableParameter -> [2048, 1]
+Validating --> W0*features+B0 = Plus(W0*features[2048, MBSize 3], B0[2048, 1]) -> [2048, MBSize 3]
+Validating --> H1 = Sigmoid(W0*features+B0[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W1*H1 = Times(W1[2048, 2048], H1[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B1 = LearnableParameter -> [2048, 1]
+Validating --> W1*H1+B1 = Plus(W1*H1[2048, MBSize 3], B1[2048, 1]) -> [2048, MBSize 3]
+Validating --> H2 = Sigmoid(W1*H1+B1[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W2*H2 = Times(W2[2048, 2048], H2[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B2 = LearnableParameter -> [2048, 1]
+Validating --> W2*H2+B2 = Plus(W2*H2[2048, MBSize 3], B2[2048, 1]) -> [2048, MBSize 3]
+Validating --> H3 = Sigmoid(W2*H2+B2[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W3*H3 = Times(W3[2048, 2048], H3[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B3 = LearnableParameter -> [2048, 1]
+Validating --> W3*H3+B3 = Plus(W3*H3[2048, MBSize 3], B3[2048, 1]) -> [2048, MBSize 3]
+Validating --> H4 = Sigmoid(W3*H3+B3[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W4*H3 = Times(W4[10000, 2048], H4[2048, MBSize 3]) -> [10000, MBSize 3]
+Validating --> B4 = LearnableParameter -> [10000, 1]
+Validating --> HLast = Plus(W4*H3[10000, MBSize 3], B4[10000, 1]) -> [10000, MBSize 3]
+Validating --> EvalErrorPrediction = ErrorPrediction(labels[10000, MBSize 3], HLast[10000, MBSize 3]) -> [1, 1]
+
+Validating for node EvalErrorPrediction. 15 nodes to process in pass 2.
+
+Validating --> labels = InputValue -> [10000, MBSize 3]
+Validating --> W4 = LearnableParameter -> [10000, 2048]
+Validating --> W3 = LearnableParameter -> [2048, 2048]
+Validating --> W2 = LearnableParameter -> [2048, 2048]
+Validating --> W1 = LearnableParameter -> [2048, 2048]
+Validating --> W0 = LearnableParameter -> [2048, 512]
+Validating --> features = InputValue -> [512, MBSize 3]
+Validating --> W0*features = Times(W0[2048, 512], features[512, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B0 = LearnableParameter -> [2048, 1]
+Validating --> W0*features+B0 = Plus(W0*features[2048, MBSize 3], B0[2048, 1]) -> [2048, MBSize 3]
+Validating --> H1 = Sigmoid(W0*features+B0[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W1*H1 = Times(W1[2048, 2048], H1[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B1 = LearnableParameter -> [2048, 1]
+Validating --> W1*H1+B1 = Plus(W1*H1[2048, MBSize 3], B1[2048, 1]) -> [2048, MBSize 3]
+Validating --> H2 = Sigmoid(W1*H1+B1[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W2*H2 = Times(W2[2048, 2048], H2[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B2 = LearnableParameter -> [2048, 1]
+Validating --> W2*H2+B2 = Plus(W2*H2[2048, MBSize 3], B2[2048, 1]) -> [2048, MBSize 3]
+Validating --> H3 = Sigmoid(W2*H2+B2[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W3*H3 = Times(W3[2048, 2048], H3[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B3 = LearnableParameter -> [2048, 1]
+Validating --> W3*H3+B3 = Plus(W3*H3[2048, MBSize 3], B3[2048, 1]) -> [2048, MBSize 3]
+Validating --> H4 = Sigmoid(W3*H3+B3[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W4*H3 = Times(W4[10000, 2048], H4[2048, MBSize 3]) -> [10000, MBSize 3]
+Validating --> B4 = LearnableParameter -> [10000, 1]
+Validating --> HLast = Plus(W4*H3[10000, MBSize 3], B4[10000, 1]) -> [10000, MBSize 3]
+Validating --> EvalErrorPrediction = ErrorPrediction(labels[10000, MBSize 3], HLast[10000, MBSize 3]) -> [1, 1]
+
+Validating for node EvalErrorPrediction, final verification.
+
+Validating --> labels = InputValue -> [10000, MBSize 3]
+Validating --> W4 = LearnableParameter -> [10000, 2048]
+Validating --> W3 = LearnableParameter -> [2048, 2048]
+Validating --> W2 = LearnableParameter -> [2048, 2048]
+Validating --> W1 = LearnableParameter -> [2048, 2048]
+Validating --> W0 = LearnableParameter -> [2048, 512]
+Validating --> features = InputValue -> [512, MBSize 3]
+Validating --> W0*features = Times(W0[2048, 512], features[512, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B0 = LearnableParameter -> [2048, 1]
+Validating --> W0*features+B0 = Plus(W0*features[2048, MBSize 3], B0[2048, 1]) -> [2048, MBSize 3]
+Validating --> H1 = Sigmoid(W0*features+B0[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W1*H1 = Times(W1[2048, 2048], H1[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B1 = LearnableParameter -> [2048, 1]
+Validating --> W1*H1+B1 = Plus(W1*H1[2048, MBSize 3], B1[2048, 1]) -> [2048, MBSize 3]
+Validating --> H2 = Sigmoid(W1*H1+B1[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W2*H2 = Times(W2[2048, 2048], H2[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B2 = LearnableParameter -> [2048, 1]
+Validating --> W2*H2+B2 = Plus(W2*H2[2048, MBSize 3], B2[2048, 1]) -> [2048, MBSize 3]
+Validating --> H3 = Sigmoid(W2*H2+B2[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W3*H3 = Times(W3[2048, 2048], H3[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B3 = LearnableParameter -> [2048, 1]
+Validating --> W3*H3+B3 = Plus(W3*H3[2048, MBSize 3], B3[2048, 1]) -> [2048, MBSize 3]
+Validating --> H4 = Sigmoid(W3*H3+B3[2048, MBSize 3]) -> [2048, MBSize 3]
+Validating --> W4*H3 = Times(W4[10000, 2048], H4[2048, MBSize 3]) -> [10000, MBSize 3]
+Validating --> B4 = LearnableParameter -> [10000, 1]
+Validating --> HLast = Plus(W4*H3[10000, MBSize 3], B4[10000, 1]) -> [10000, MBSize 3]
+Validating --> EvalErrorPrediction = ErrorPrediction(labels[10000, MBSize 3], HLast[10000, MBSize 3]) -> [1, 1]
+
+11 out of 27 nodes do not share the minibatch layout with the input data.
+
+SGD using GPU 2.
+GetTrainCriterionNodes  ...
+GetEvalCriterionNodes  ...
+
+
+Allocating matrices for gradient computing
+No PreCompute nodes found, skipping PreCompute step
+Set Max Temp Mem Size For Convolution Nodes to 0 samples.
+Starting Epoch 1: learning rate per sample = 0.000001  effective momentum = 0.000000  momentum as time constant = 0.0 samples
+starting at epoch 0 counting lines to determine record count
+
+ 262144 records found
+starting epoch 0 at record count 0, and file position 0
+already there from last epoch
+
+Starting minibatch loop, DataParallelSGD training (MyRank = 1, NumNodes = 4, NumGradientBits = 1), distributed reading is ENABLED.
+RandomOrdering: 51772 retries for 262144 elements (19.7%) to ensure window condition
+RandomOrdering: recached sequence for seed 0: 116886, 75194, ...
+ Epoch[ 1 of 40]-Minibatch[   1-   4, 12.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.42266703; EvalErr[0]PerSample = 0.99984741; TotalTime = 9.3612s; SamplesPerSecond = 3500.4
+ Epoch[ 1 of 40]-Minibatch[   5-   8, 25.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.42752236; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.8283s; SamplesPerSecond = 39562.4
+ Epoch[ 1 of 40]-Minibatch[   9-  12, 37.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.42817318; EvalErr[0]PerSample = 0.99996948; TotalTime = 0.8249s; SamplesPerSecond = 39723.1
+ Epoch[ 1 of 40]-Minibatch[  13-  16, 50.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.42556626; EvalErr[0]PerSample = 0.99984741; TotalTime = 0.8242s; SamplesPerSecond = 39757.8
+ Epoch[ 1 of 40]-Minibatch[  17-  20, 62.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.42454338; EvalErr[0]PerSample = 0.99984741; TotalTime = 0.8243s; SamplesPerSecond = 39754.0
+ Epoch[ 1 of 40]-Minibatch[  21-  24, 75.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.42434740; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.8260s; SamplesPerSecond = 39670.5
+ Epoch[ 1 of 40]-Minibatch[  25-  28, 87.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.42229772; EvalErr[0]PerSample = 0.99984741; TotalTime = 0.8232s; SamplesPerSecond = 39804.6
+ Epoch[ 1 of 40]-Minibatch[  29-  32, 100.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.42794818; EvalErr[0]PerSample = 0.99990845; TotalTime = 0.8187s; SamplesPerSecond = 40024.8
+Finished Epoch[ 1 of 40]: [Training Set] TrainLossPerSample = 9.4253832; EvalErrPerSample = 0.99987793; AvgLearningRatePerSample = 1.2207031e-06; EpochTime=42
+Starting Epoch 2: learning rate per sample = 0.000001  effective momentum = 0.000000  momentum as time constant = 0.0 samples
+starting epoch 1 at record count 262144, and file position 0
+already there from last epoch
+
+Starting minibatch loop, DataParallelSGD training (MyRank = 1, NumNodes = 4, NumGradientBits = 1), distributed reading is ENABLED.
+RandomOrdering: 51772 retries for 262144 elements (19.7%) to ensure window condition
+RandomOrdering: recached sequence for seed 1: 116886, 75194, ...
+ Epoch[ 2 of 40]-Minibatch[   1-   4, 12.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.41045648; EvalErr[0]PerSample = 0.99984741; TotalTime = 0.8856s; SamplesPerSecond = 37000.4
+ Epoch[ 2 of 40]-Minibatch[   5-   8, 25.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.41531217; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.8275s; SamplesPerSecond = 39598.7
+ Epoch[ 2 of 40]-Minibatch[   9-  12, 37.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.41595805; EvalErr[0]PerSample = 0.99996948; TotalTime = 0.8263s; SamplesPerSecond = 39657.2
+ Epoch[ 2 of 40]-Minibatch[  13-  16, 50.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.41348135; EvalErr[0]PerSample = 0.99984741; TotalTime = 0.8270s; SamplesPerSecond = 39620.6
+ Epoch[ 2 of 40]-Minibatch[  17-  20, 62.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.41255891; EvalErr[0]PerSample = 0.99984741; TotalTime = 0.8270s; SamplesPerSecond = 39622.1
+ Epoch[ 2 of 40]-Minibatch[  21-  24, 75.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.41248143; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.8245s; SamplesPerSecond = 39745.1
+ Epoch[ 2 of 40]-Minibatch[  25-  28, 87.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.41057467; EvalErr[0]PerSample = 0.99984741; TotalTime = 0.8260s; SamplesPerSecond = 39668.7
+ Epoch[ 2 of 40]-Minibatch[  29-  32, 100.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.41640484; EvalErr[0]PerSample = 0.99990845; TotalTime = 0.8203s; SamplesPerSecond = 39946.6
+Finished Epoch[ 2 of 40]: [Training Set] TrainLossPerSample = 9.4134035; EvalErrPerSample = 0.99987793; AvgLearningRatePerSample = 1.2207031e-06; EpochTime=6.67007
+Starting Epoch 3: learning rate per sample = 0.000001  effective momentum = 0.000000  momentum as time constant = 0.0 samples
+starting epoch 2 at record count 524288, and file position 0
+already there from last epoch
+
+Starting minibatch loop, DataParallelSGD training (MyRank = 1, NumNodes = 4, NumGradientBits = 1), distributed reading is ENABLED.
+RandomOrdering: 51800 retries for 262144 elements (19.8%) to ensure window condition
+RandomOrdering: recached sequence for seed 2: 10530, 63732, ...
+ Epoch[ 3 of 40]-Minibatch[   1-   4, 12.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.40460747; EvalErr[0]PerSample = 0.99969482; TotalTime = 0.8921s; SamplesPerSecond = 36730.8
+ Epoch[ 3 of 40]-Minibatch[   5-   8, 25.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.40144449; EvalErr[0]PerSample = 0.99990845; TotalTime = 0.8241s; SamplesPerSecond = 39762.7
+ Epoch[ 3 of 40]-Minibatch[   9-  12, 37.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.40398031; EvalErr[0]PerSample = 0.99993896; TotalTime = 0.8291s; SamplesPerSecond = 39523.7
+ Epoch[ 3 of 40]-Minibatch[  13-  16, 50.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.39961189; EvalErr[0]PerSample = 0.99984741; TotalTime = 0.8253s; SamplesPerSecond = 39702.4
+ Epoch[ 3 of 40]-Minibatch[  17-  20, 62.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.39915031; EvalErr[0]PerSample = 0.99981689; TotalTime = 0.8263s; SamplesPerSecond = 39654.3
+ Epoch[ 3 of 40]-Minibatch[  21-  24, 75.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.40442950; EvalErr[0]PerSample = 0.99990845; TotalTime = 0.8264s; SamplesPerSecond = 39653.9
+ Epoch[ 3 of 40]-Minibatch[  25-  28, 87.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.40356702; EvalErr[0]PerSample = 0.99993896; TotalTime = 0.8263s; SamplesPerSecond = 39654.2
+ Epoch[ 3 of 40]-Minibatch[  29-  32, 100.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.40187722; EvalErr[0]PerSample = 0.99996948; TotalTime = 0.8170s; SamplesPerSecond = 40107.9
+Finished Epoch[ 3 of 40]: [Training Set] TrainLossPerSample = 9.4023335; EvalErrPerSample = 0.99987793; AvgLearningRatePerSample = 1.2207031e-06; EpochTime=6.67244
+Starting Epoch 4: learning rate per sample = 0.000001  effective momentum = 0.000000  momentum as time constant = 0.0 samples
+starting epoch 3 at record count 786432, and file position 0
+already there from last epoch
+
+Starting minibatch loop, DataParallelSGD training (MyRank = 1, NumNodes = 4, NumGradientBits = 1), distributed reading is ENABLED.
+RandomOrdering: 51914 retries for 262144 elements (19.8%) to ensure window condition
+RandomOrdering: recached sequence for seed 3: 62103, 12834, ...
+ Epoch[ 4 of 40]-Minibatch[   1-   4, 12.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.39898837; EvalErr[0]PerSample = 0.99984741; TotalTime = 0.8912s; SamplesPerSecond = 36768.1
+ Epoch[ 4 of 40]-Minibatch[   5-   8, 25.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.38899088; EvalErr[0]PerSample = 0.99981689; TotalTime = 0.8267s; SamplesPerSecond = 39637.2
+ Epoch[ 4 of 40]-Minibatch[   9-  12, 37.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.39753717; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.8265s; SamplesPerSecond = 39646.7
+ Epoch[ 4 of 40]-Minibatch[  13-  16, 50.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.38850838; EvalErr[0]PerSample = 0.99984741; TotalTime = 0.8286s; SamplesPerSecond = 39545.4
+ Epoch[ 4 of 40]-Minibatch[  17-  20, 62.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.39275938; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.8266s; SamplesPerSecond = 39642.5
+ Epoch[ 4 of 40]-Minibatch[  21-  24, 75.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.38550061; EvalErr[0]PerSample = 0.99996948; TotalTime = 0.8237s; SamplesPerSecond = 39782.0
+ Epoch[ 4 of 40]-Minibatch[  25-  28, 87.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.39135832; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.8263s; SamplesPerSecond = 39655.8
+ Epoch[ 4 of 40]-Minibatch[  29-  32, 100.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.39305955; EvalErr[0]PerSample = 0.99990845; TotalTime = 0.8157s; SamplesPerSecond = 40171.0
+Finished Epoch[ 4 of 40]: [Training Set] TrainLossPerSample = 9.3920878; EvalErrPerSample = 0.99987793; AvgLearningRatePerSample = 1.2207031e-06; EpochTime=6.67107
+Starting Epoch 5: learning rate per sample = 0.000001  effective momentum = 0.000000  momentum as time constant = 0.0 samples
+starting epoch 4 at record count 1048576, and file position 0
+already there from last epoch
+
+Starting minibatch loop, DataParallelSGD training (MyRank = 1, NumNodes = 4, NumGradientBits = 1), distributed reading is ENABLED.
+RandomOrdering: 51360 retries for 262144 elements (19.6%) to ensure window condition
+RandomOrdering: recached sequence for seed 4: 26710, 46708, ...
+ Epoch[ 5 of 40]-Minibatch[   1-   4, 12.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.38443094; EvalErr[0]PerSample = 0.99984741; TotalTime = 0.8913s; SamplesPerSecond = 36764.4
+ Epoch[ 5 of 40]-Minibatch[   5-   8, 25.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.38526231; EvalErr[0]PerSample = 0.99966431; TotalTime = 0.8270s; SamplesPerSecond = 39624.6
+ Epoch[ 5 of 40]-Minibatch[   9-  12, 37.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.37879974; EvalErr[0]PerSample = 0.99990845; TotalTime = 0.8231s; SamplesPerSecond = 39809.4
+ Epoch[ 5 of 40]-Minibatch[  13-  16, 50.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.38384646; EvalErr[0]PerSample = 0.99996948; TotalTime = 0.8270s; SamplesPerSecond = 39624.1
+ Epoch[ 5 of 40]-Minibatch[  17-  20, 62.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.38112253; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.8271s; SamplesPerSecond = 39619.9
+ Epoch[ 5 of 40]-Minibatch[  21-  24, 75.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.38164556; EvalErr[0]PerSample = 0.99996948; TotalTime = 0.8264s; SamplesPerSecond = 39649.2
+ Epoch[ 5 of 40]-Minibatch[  25-  28, 87.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.38598520; EvalErr[0]PerSample = 0.99993896; TotalTime = 0.8256s; SamplesPerSecond = 39689.1
+ Epoch[ 5 of 40]-Minibatch[  29-  32, 100.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.37956876; EvalErr[0]PerSample = 0.99984741; TotalTime = 0.8176s; SamplesPerSecond = 40080.5
+Finished Epoch[ 5 of 40]: [Training Set] TrainLossPerSample = 9.3825827; EvalErrPerSample = 0.99987793; AvgLearningRatePerSample = 1.2207031e-06; EpochTime=6.67081
+Starting Epoch 6: learning rate per sample = 0.000001  effective momentum = 0.000000  momentum as time constant = 0.0 samples
+starting epoch 5 at record count 1310720, and file position 0
+already there from last epoch
+
+Starting minibatch loop, DataParallelSGD training (MyRank = 1, NumNodes = 4, NumGradientBits = 1), distributed reading is ENABLED.
+RandomOrdering: 51922 retries for 262144 elements (19.8%) to ensure window condition
+RandomOrdering: recached sequence for seed 5: 117442, 81935, ...
+ Epoch[ 6 of 40]-Minibatch[   1-   4, 12.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.37679237; EvalErr[0]PerSample = 0.99990845; TotalTime = 0.8917s; SamplesPerSecond = 36747.1
+ Epoch[ 6 of 40]-Minibatch[   5-   8, 25.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.37974828; EvalErr[0]PerSample = 0.99975586; TotalTime = 0.8274s; SamplesPerSecond = 39605.4
+ Epoch[ 6 of 40]-Minibatch[   9-  12, 37.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.36542517; EvalErr[0]PerSample = 0.99990845; TotalTime = 0.8269s; SamplesPerSecond = 39628.7
+ Epoch[ 6 of 40]-Minibatch[  13-  16, 50.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.37334818; EvalErr[0]PerSample = 0.99990845; TotalTime = 0.8283s; SamplesPerSecond = 39561.1
+ Epoch[ 6 of 40]-Minibatch[  17-  20, 62.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.37169635; EvalErr[0]PerSample = 0.99990845; TotalTime = 0.8281s; SamplesPerSecond = 39568.2
+ Epoch[ 6 of 40]-Minibatch[  21-  24, 75.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.37662798; EvalErr[0]PerSample = 0.99984741; TotalTime = 0.8264s; SamplesPerSecond = 39650.4
+ Epoch[ 6 of 40]-Minibatch[  25-  28, 87.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.36886770; EvalErr[0]PerSample = 0.99993896; TotalTime = 0.8270s; SamplesPerSecond = 39623.4
+ Epoch[ 6 of 40]-Minibatch[  29-  32, 100.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.37736601; EvalErr[0]PerSample = 0.99984741; TotalTime = 0.8199s; SamplesPerSecond = 39968.2
+Finished Epoch[ 6 of 40]: [Training Set] TrainLossPerSample = 9.373734; EvalErrPerSample = 0.99987793; AvgLearningRatePerSample = 1.2207031e-06; EpochTime=6.68149
+Starting Epoch 7: learning rate per sample = 0.000001  effective momentum = 0.000000  momentum as time constant = 0.0 samples
+starting epoch 6 at record count 1572864, and file position 0
+already there from last epoch
+
+Starting minibatch loop, DataParallelSGD training (MyRank = 1, NumNodes = 4, NumGradientBits = 1), distributed reading is ENABLED.
+RandomOrdering: 52007 retries for 262144 elements (19.8%) to ensure window condition
+RandomOrdering: recached sequence for seed 6: 110844, 19033, ...
+ Epoch[ 7 of 40]-Minibatch[   1-   4, 12.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.36464775; EvalErr[0]PerSample = 0.99978638; TotalTime = 0.8895s; SamplesPerSecond = 36839.6
+ Epoch[ 7 of 40]-Minibatch[   5-   8, 25.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.37047082; EvalErr[0]PerSample = 0.99984741; TotalTime = 0.8281s; SamplesPerSecond = 39570.5
+ Epoch[ 7 of 40]-Minibatch[   9-  12, 37.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.36785227; EvalErr[0]PerSample = 0.99990845; TotalTime = 0.8268s; SamplesPerSecond = 39631.3
+ Epoch[ 7 of 40]-Minibatch[  13-  16, 50.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.36209691; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.8252s; SamplesPerSecond = 39709.0
+ Epoch[ 7 of 40]-Minibatch[  17-  20, 62.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.36320710; EvalErr[0]PerSample = 0.99993896; TotalTime = 0.8263s; SamplesPerSecond = 39654.0
+ Epoch[ 7 of 40]-Minibatch[  21-  24, 75.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.36832523; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.8259s; SamplesPerSecond = 39676.2
+ Epoch[ 7 of 40]-Minibatch[  25-  28, 87.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.36129266; EvalErr[0]PerSample = 0.99981689; TotalTime = 0.8263s; SamplesPerSecond = 39655.8
+ Epoch[ 7 of 40]-Minibatch[  29-  32, 100.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.36604720; EvalErr[0]PerSample = 0.99996948; TotalTime = 0.8206s; SamplesPerSecond = 39930.9
+Finished Epoch[ 7 of 40]: [Training Set] TrainLossPerSample = 9.3654925; EvalErrPerSample = 0.99987793; AvgLearningRatePerSample = 1.2207031e-06; EpochTime=6.67456

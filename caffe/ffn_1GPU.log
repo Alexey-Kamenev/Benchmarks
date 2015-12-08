@@ -1,0 +1,216 @@
+I1208 05:38:49.425312 49471 caffe.cpp:184] Using GPUs 0
+I1208 05:38:59.337173 49471 solver.cpp:48] Initializing solver from parameters: 
+base_lr: 0.001
+max_iter: 100
+lr_policy: "fixed"
+solver_mode: GPU
+device_id: 0
+net: "./ffn.prototxt"
+I1208 05:38:59.337251 49471 solver.cpp:91] Creating training net from net file: ./ffn.prototxt
+I1208 05:38:59.337708 49471 net.cpp:49] Initializing net from parameters: 
+name: "FFN"
+state {
+  phase: TRAIN
+}
+layer {
+  name: "data"
+  type: "Data"
+  top: "data"
+  top: "label"
+  include {
+    phase: TRAIN
+  }
+  data_param {
+    source: "/var/storage/shared/ipgsp/sys/jobs/application_1447977864059_0183/benchmarks/caffe/fake_data.lmdb"
+    batch_size: 8192
+    backend: LMDB
+  }
+}
+layer {
+  name: "H1"
+  type: "InnerProduct"
+  bottom: "data"
+  top: "H1"
+  inner_product_param {
+    num_output: 2048
+  }
+}
+layer {
+  name: "H1_A"
+  type: "Sigmoid"
+  bottom: "H1"
+  top: "H1"
+}
+layer {
+  name: "H2"
+  type: "InnerProduct"
+  bottom: "H1"
+  top: "H2"
+  inner_product_param {
+    num_output: 2048
+  }
+}
+layer {
+  name: "H2_A"
+  type: "Sigmoid"
+  bottom: "H2"
+  top: "H2"
+}
+layer {
+  name: "H3"
+  type: "InnerProduct"
+  bottom: "H2"
+  top: "H3"
+  inner_product_param {
+    num_output: 2048
+  }
+}
+layer {
+  name: "H3_A"
+  type: "Sigmoid"
+  bottom: "H3"
+  top: "H3"
+}
+layer {
+  name: "H4"
+  type: "InnerProduct"
+  bottom: "H3"
+  top: "H4"
+  inner_product_param {
+    num_output: 2048
+  }
+}
+layer {
+  name: "H4_A"
+  type: "Sigmoid"
+  bottom: "H4"
+  top: "H4"
+}
+layer {
+  name: "L"
+  type: "InnerProduct"
+  bottom: "H4"
+  top: "L"
+  inner_product_param {
+    num_output: 10000
+  }
+}
+layer {
+  name: "loss"
+  type: "SoftmaxWithLoss"
+  bottom: "L"
+  bottom: "label"
+  top: "loss"
+}
+I1208 05:38:59.337765 49471 layer_factory.hpp:77] Creating layer data
+I1208 05:38:59.342125 49471 net.cpp:106] Creating Layer data
+I1208 05:38:59.342136 49471 net.cpp:411] data -> data
+I1208 05:38:59.342159 49471 net.cpp:411] data -> label
+I1208 05:38:59.344041 49474 db_lmdb.cpp:38] Opened lmdb /var/storage/shared/ipgsp/sys/jobs/application_1447977864059_0183/benchmarks/caffe/fake_data.lmdb
+I1208 05:38:59.358345 49471 data_layer.cpp:41] output data size: 8192,1,1,512
+I1208 05:38:59.387707 49471 net.cpp:150] Setting up data
+I1208 05:38:59.387778 49471 net.cpp:157] Top shape: 8192 1 1 512 (4194304)
+I1208 05:38:59.387785 49471 net.cpp:157] Top shape: 8192 (8192)
+I1208 05:38:59.387789 49471 net.cpp:165] Memory required for data: 16809984
+I1208 05:38:59.387799 49471 layer_factory.hpp:77] Creating layer H1
+I1208 05:38:59.387814 49471 net.cpp:106] Creating Layer H1
+I1208 05:38:59.387820 49471 net.cpp:454] H1 <- data
+I1208 05:38:59.387833 49471 net.cpp:411] H1 -> H1
+I1208 05:38:59.390786 49471 net.cpp:150] Setting up H1
+I1208 05:38:59.390800 49471 net.cpp:157] Top shape: 8192 2048 (16777216)
+I1208 05:38:59.390805 49471 net.cpp:165] Memory required for data: 83918848
+I1208 05:38:59.390818 49471 layer_factory.hpp:77] Creating layer H1_A
+I1208 05:38:59.390830 49471 net.cpp:106] Creating Layer H1_A
+I1208 05:38:59.390836 49471 net.cpp:454] H1_A <- H1
+I1208 05:38:59.390841 49471 net.cpp:397] H1_A -> H1 (in-place)
+I1208 05:38:59.412019 49475 blocking_queue.cpp:50] Waiting for data
+I1208 05:38:59.438570 49475 blocking_queue.cpp:50] Waiting for data
+I1208 05:38:59.451354 49475 blocking_queue.cpp:50] Waiting for data
+I1208 05:38:59.464041 49475 blocking_queue.cpp:50] Waiting for data
+I1208 05:38:59.485954 49475 blocking_queue.cpp:50] Waiting for data
+I1208 05:38:59.498752 49475 blocking_queue.cpp:50] Waiting for data
+I1208 05:38:59.511708 49475 blocking_queue.cpp:50] Waiting for data
+I1208 05:38:59.513068 49471 net.cpp:150] Setting up H1_A
+I1208 05:38:59.513108 49471 net.cpp:157] Top shape: 8192 2048 (16777216)
+I1208 05:38:59.513113 49471 net.cpp:165] Memory required for data: 151027712
+I1208 05:38:59.513119 49471 layer_factory.hpp:77] Creating layer H2
+I1208 05:38:59.513131 49471 net.cpp:106] Creating Layer H2
+I1208 05:38:59.513137 49471 net.cpp:454] H2 <- H1
+I1208 05:38:59.513147 49471 net.cpp:411] H2 -> H2
+I1208 05:38:59.521333 49471 net.cpp:150] Setting up H2
+I1208 05:38:59.521363 49471 net.cpp:157] Top shape: 8192 2048 (16777216)
+I1208 05:38:59.521409 49471 net.cpp:165] Memory required for data: 218136576
+I1208 05:38:59.521428 49471 layer_factory.hpp:77] Creating layer H2_A
+I1208 05:38:59.521445 49471 net.cpp:106] Creating Layer H2_A
+I1208 05:38:59.521450 49471 net.cpp:454] H2_A <- H2
+I1208 05:38:59.521458 49471 net.cpp:397] H2_A -> H2 (in-place)
+I1208 05:38:59.521807 49471 net.cpp:150] Setting up H2_A
+I1208 05:38:59.521818 49471 net.cpp:157] Top shape: 8192 2048 (16777216)
+I1208 05:38:59.521826 49471 net.cpp:165] Memory required for data: 285245440
+I1208 05:38:59.521831 49471 layer_factory.hpp:77] Creating layer H3
+I1208 05:38:59.521841 49471 net.cpp:106] Creating Layer H3
+I1208 05:38:59.521844 49471 net.cpp:454] H3 <- H2
+I1208 05:38:59.521850 49471 net.cpp:411] H3 -> H3
+I1208 05:38:59.530151 49471 net.cpp:150] Setting up H3
+I1208 05:38:59.530181 49471 net.cpp:157] Top shape: 8192 2048 (16777216)
+I1208 05:38:59.530185 49471 net.cpp:165] Memory required for data: 352354304
+I1208 05:38:59.530199 49471 layer_factory.hpp:77] Creating layer H3_A
+I1208 05:38:59.530210 49471 net.cpp:106] Creating Layer H3_A
+I1208 05:38:59.530220 49471 net.cpp:454] H3_A <- H3
+I1208 05:38:59.530227 49471 net.cpp:397] H3_A -> H3 (in-place)
+I1208 05:38:59.530416 49471 net.cpp:150] Setting up H3_A
+I1208 05:38:59.530426 49471 net.cpp:157] Top shape: 8192 2048 (16777216)
+I1208 05:38:59.530431 49471 net.cpp:165] Memory required for data: 419463168
+I1208 05:38:59.530434 49471 layer_factory.hpp:77] Creating layer H4
+I1208 05:38:59.530444 49471 net.cpp:106] Creating Layer H4
+I1208 05:38:59.530448 49471 net.cpp:454] H4 <- H3
+I1208 05:38:59.530455 49471 net.cpp:411] H4 -> H4
+I1208 05:38:59.538918 49475 blocking_queue.cpp:50] Waiting for data
+I1208 05:38:59.539352 49471 net.cpp:150] Setting up H4
+I1208 05:38:59.539376 49471 net.cpp:157] Top shape: 8192 2048 (16777216)
+I1208 05:38:59.539381 49471 net.cpp:165] Memory required for data: 486572032
+I1208 05:38:59.539389 49471 layer_factory.hpp:77] Creating layer H4_A
+I1208 05:38:59.539404 49471 net.cpp:106] Creating Layer H4_A
+I1208 05:38:59.539412 49471 net.cpp:454] H4_A <- H4
+I1208 05:38:59.539419 49471 net.cpp:397] H4_A -> H4 (in-place)
+I1208 05:38:59.539780 49471 net.cpp:150] Setting up H4_A
+I1208 05:38:59.539791 49471 net.cpp:157] Top shape: 8192 2048 (16777216)
+I1208 05:38:59.539798 49471 net.cpp:165] Memory required for data: 553680896
+I1208 05:38:59.539803 49471 layer_factory.hpp:77] Creating layer L
+I1208 05:38:59.539810 49471 net.cpp:106] Creating Layer L
+I1208 05:38:59.539814 49471 net.cpp:454] L <- H4
+I1208 05:38:59.539822 49471 net.cpp:411] L -> L
+I1208 05:38:59.583822 49471 net.cpp:150] Setting up L
+I1208 05:38:59.583858 49471 net.cpp:157] Top shape: 8192 10000 (81920000)
+I1208 05:38:59.583863 49471 net.cpp:165] Memory required for data: 881360896
+I1208 05:38:59.583878 49471 layer_factory.hpp:77] Creating layer loss
+I1208 05:38:59.583896 49471 net.cpp:106] Creating Layer loss
+I1208 05:38:59.583902 49471 net.cpp:454] loss <- L
+I1208 05:38:59.583910 49471 net.cpp:454] loss <- label
+I1208 05:38:59.583922 49471 net.cpp:411] loss -> loss
+I1208 05:38:59.583940 49471 layer_factory.hpp:77] Creating layer loss
+I1208 05:38:59.765748 49471 net.cpp:150] Setting up loss
+I1208 05:38:59.765797 49471 net.cpp:157] Top shape: (1)
+I1208 05:38:59.765804 49471 net.cpp:160]     with loss weight 1
+I1208 05:38:59.765825 49471 net.cpp:165] Memory required for data: 881360900
+I1208 05:38:59.765832 49471 net.cpp:226] loss needs backward computation.
+I1208 05:38:59.765840 49471 net.cpp:226] L needs backward computation.
+I1208 05:38:59.765844 49471 net.cpp:226] H4_A needs backward computation.
+I1208 05:38:59.765849 49471 net.cpp:226] H4 needs backward computation.
+I1208 05:38:59.765854 49471 net.cpp:226] H3_A needs backward computation.
+I1208 05:38:59.765859 49471 net.cpp:226] H3 needs backward computation.
+I1208 05:38:59.765864 49471 net.cpp:226] H2_A needs backward computation.
+I1208 05:38:59.765869 49471 net.cpp:226] H2 needs backward computation.
+I1208 05:38:59.765874 49471 net.cpp:226] H1_A needs backward computation.
+I1208 05:38:59.765887 49471 net.cpp:226] H1 needs backward computation.
+I1208 05:38:59.765934 49471 net.cpp:228] data does not need backward computation.
+I1208 05:38:59.765940 49471 net.cpp:270] This network produces output loss
+I1208 05:38:59.765955 49471 net.cpp:283] Network initialization done.
+I1208 05:38:59.765995 49471 solver.cpp:60] Solver scaffolding done.
+I1208 05:38:59.766335 49471 caffe.cpp:212] Starting Optimization
+I1208 05:38:59.766345 49471 solver.cpp:288] Solving FFN
+I1208 05:38:59.766347 49471 solver.cpp:289] Learning Rate Policy: fixed
+I1208 05:40:03.220875 49471 solver.cpp:459] Snapshotting to binary proto file _iter_100.caffemodel
+I1208 05:40:05.152649 49471 sgd_solver.cpp:269] Snapshotting solver state to binary proto file _iter_100.solverstate
+I1208 05:40:06.284504 49471 solver.cpp:326] Optimization Done.
+I1208 05:40:06.284602 49471 caffe.cpp:215] Optimization Done.

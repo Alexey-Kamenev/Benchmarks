@@ -5,7 +5,7 @@ require 'cudnn';
 require 'optim';
 torch.setdefaulttensortype('torch.FloatTensor')
 
-local steps = 500 -- number of runs
+local steps = 100 -- number of runs
 
 local Linear = nn.Linear
 local Transfer = nn.Sigmoid

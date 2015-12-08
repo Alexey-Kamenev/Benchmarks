@@ -1,0 +1,3 @@
+Using gpu device 0: Tesla K40m
+Using Theano backend.
+1 GPU: 4585.43059456 samples per sec
