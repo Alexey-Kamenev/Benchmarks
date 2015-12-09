@@ -1,0 +1,1105 @@
+-------------------------------------------------------------------
+Build info: 
+
+		Built time: Dec  9 2015 13:25:52
+		Last modified date: Wed Dec  9 13:25:48 2015
+		Build type: release
+		Math lib: acml
+		CUDA_PATH: /usr/local/cuda-7.0
+		CUB_PATH: /usr/local/cub-1.4.1
+		Build Branch: HEAD
+		Build SHA1: b2f40d5462fdf7fc363f25159b2f4e16e9929772
+-------------------------------------------------------------------
+running on localhost at 2015/12/09 17:16:33
+command line: 
+/var/storage/shared/ipgsp/sys/jobs/application_1447977864059_0303/cntkbin/bin/cntk configFile=/var/storage/shared/ipgsp/alexeyk/benchmarks/CNTK/ffn.config WorkDir=/var/storage/shared/ipgsp/sys/jobs/application_1447977864059_0303 DataDir=/hdfs/ipgsp/alexeyk ConfigName=tempname --none-- WorkDir1=/var/storage/shared/ipgsp/alexeyk/benchmarks/ progressTracing=true stderr=/var/storage/shared/ipgsp/sys/jobs/application_1447977864059_0303/logs/1/out ModelDir=/var/storage/shared/ipgsp/sys/jobs/application_1447977864059_0303/models ConfigDir=/var/storage/shared/ipgsp/alexeyk/benchmarks/CNTK 
+
+>>>>>>>>>>>>>>>>>>>> RAW CONFIG (VARIABLES NOT RESOLVED) >>>>>>>>>>>>>>>>>>>>
+WorkDir1=.
+precision=float
+deviceId=Auto
+makeMode=false
+command=Train
+featureDim = 512
+labelDim = 10000
+hiddenDim = 2048
+parallelTrain=true
+prefetch=true
+Train=[
+    action=train
+    modelPath=$ModelDir$/cntk
+    deviceId=Auto
+    traceLevel=1
+    SimpleNetworkBuilder=[
+        layerSizes=$featureDim$:$hiddenDim$:$hiddenDim$:$hiddenDim$:$hiddenDim$:$labelDim$
+        trainingCriterion=CrossEntropyWithSoftmax
+        evalCriterion=ErrorPrediction
+        layerTypes=Sigmoid
+        applyMeanVarNorm=false
+        initValueScale=1.0
+        uniformInit=true
+        needPrior=false
+    ]
+    SGD=[
+        epochSize=262144
+        minibatchSize=8192
+        learningRatesPerMB=0.01
+        numMBsToShowResult=4
+        momentumPerSample=0
+        dropoutRate=0.0
+        maxEpochs=40
+        ParallelTrain=[
+            parallelizationMethod=DataParallelSGD
+            distributedMBReading=true
+            parallelizationStartEpoch=1
+            DataParallelSGD=[
+                gradientBits=1
+            ]
+        ]
+        gradUpdateType=None
+        normWithAveMultiplier=true
+        clippingThresholdPerSample=1#INF
+    ]
+]
+reader=[
+    readerType=UCIFastReader
+    file=$WorkDir1$/data.txt
+    features=[
+        dim=$featureDim$
+        start=1
+    ]
+    labels=[
+        dim=1
+        start=0
+	labelDim=$labelDim$
+	labelMappingFile=$WorkDir1$/labelmap.txt
+    ]
+]
+WorkDir=/var/storage/shared/ipgsp/sys/jobs/application_1447977864059_0303
+DataDir=/hdfs/ipgsp/alexeyk
+ConfigName=tempname
+--none--
+WorkDir1=/var/storage/shared/ipgsp/alexeyk/benchmarks/
+progressTracing=true
+stderr=/var/storage/shared/ipgsp/sys/jobs/application_1447977864059_0303/logs/1/out
+ModelDir=/var/storage/shared/ipgsp/sys/jobs/application_1447977864059_0303/models
+ConfigDir=/var/storage/shared/ipgsp/alexeyk/benchmarks/CNTK
+
+<<<<<<<<<<<<<<<<<<<< RAW CONFIG (VARIABLES NOT RESOLVED)  <<<<<<<<<<<<<<<<<<<<
+
+>>>>>>>>>>>>>>>>>>>> RAW CONFIG WITH ALL VARIABLES RESOLVED >>>>>>>>>>>>>>>>>>>>
+WorkDir1=.
+precision=float
+deviceId=Auto
+makeMode=false
+command=Train
+featureDim = 512
+labelDim = 10000
+hiddenDim = 2048
+parallelTrain=true
+prefetch=true
+Train=[
+    action=train
+    modelPath=/var/storage/shared/ipgsp/sys/jobs/application_1447977864059_0303/models/cntk
+    deviceId=Auto
+    traceLevel=1
+    SimpleNetworkBuilder=[
+        layerSizes=512:2048:2048:2048:2048:10000
+        trainingCriterion=CrossEntropyWithSoftmax
+        evalCriterion=ErrorPrediction
+        layerTypes=Sigmoid
+        applyMeanVarNorm=false
+        initValueScale=1.0
+        uniformInit=true
+        needPrior=false
+    ]
+    SGD=[
+        epochSize=262144
+        minibatchSize=8192
+        learningRatesPerMB=0.01
+        numMBsToShowResult=4
+        momentumPerSample=0
+        dropoutRate=0.0
+        maxEpochs=40
+        ParallelTrain=[
+            parallelizationMethod=DataParallelSGD
+            distributedMBReading=true
+            parallelizationStartEpoch=1
+            DataParallelSGD=[
+                gradientBits=1
+            ]
+        ]
+        gradUpdateType=None
+        normWithAveMultiplier=true
+        clippingThresholdPerSample=1#INF
+    ]
+]
+reader=[
+    readerType=UCIFastReader
+    file=/var/storage/shared/ipgsp/alexeyk/benchmarks//data.txt
+    features=[
+        dim=512
+        start=1
+    ]
+    labels=[
+        dim=1
+        start=0
+	labelDim=10000
+	labelMappingFile=/var/storage/shared/ipgsp/alexeyk/benchmarks//labelmap.txt
+    ]
+]
+WorkDir=/var/storage/shared/ipgsp/sys/jobs/application_1447977864059_0303
+DataDir=/hdfs/ipgsp/alexeyk
+ConfigName=tempname
+--none--
+WorkDir1=/var/storage/shared/ipgsp/alexeyk/benchmarks/
+progressTracing=true
+stderr=/var/storage/shared/ipgsp/sys/jobs/application_1447977864059_0303/logs/1/out
+ModelDir=/var/storage/shared/ipgsp/sys/jobs/application_1447977864059_0303/models
+ConfigDir=/var/storage/shared/ipgsp/alexeyk/benchmarks/CNTK
+
+<<<<<<<<<<<<<<<<<<<< RAW CONFIG WITH ALL VARIABLES RESOLVED <<<<<<<<<<<<<<<<<<<<
+
+>>>>>>>>>>>>>>>>>>>> PROCESSED CONFIG WITH ALL VARIABLES RESOLVED >>>>>>>>>>>>>>>>>>>>
+configparameters: ffn.config:--none--=true
+configparameters: ffn.config:command=Train
+configparameters: ffn.config:ConfigDir=/var/storage/shared/ipgsp/alexeyk/benchmarks/CNTK
+configparameters: ffn.config:ConfigName=tempname
+configparameters: ffn.config:DataDir=/hdfs/ipgsp/alexeyk
+configparameters: ffn.config:deviceId=Auto
+configparameters: ffn.config:featureDim=512
+configparameters: ffn.config:hiddenDim=2048
+configparameters: ffn.config:labelDim=10000
+configparameters: ffn.config:makeMode=false
+configparameters: ffn.config:ModelDir=/var/storage/shared/ipgsp/sys/jobs/application_1447977864059_0303/models
+configparameters: ffn.config:parallelTrain=true
+configparameters: ffn.config:precision=float
+configparameters: ffn.config:prefetch=true
+configparameters: ffn.config:progressTracing=true
+configparameters: ffn.config:reader=[
+    readerType=UCIFastReader
+    file=/var/storage/shared/ipgsp/alexeyk/benchmarks//data.txt
+    features=[
+        dim=512
+        start=1
+    ]
+    labels=[
+        dim=1
+        start=0
+	labelDim=10000
+	labelMappingFile=/var/storage/shared/ipgsp/alexeyk/benchmarks//labelmap.txt
+    ]
+]
+
+configparameters: ffn.config:stderr=/var/storage/shared/ipgsp/sys/jobs/application_1447977864059_0303/logs/1/out
+configparameters: ffn.config:Train=[
+    action=train
+    modelPath=/var/storage/shared/ipgsp/sys/jobs/application_1447977864059_0303/models/cntk
+    deviceId=Auto
+    traceLevel=1
+    SimpleNetworkBuilder=[
+        layerSizes=512:2048:2048:2048:2048:10000
+        trainingCriterion=CrossEntropyWithSoftmax
+        evalCriterion=ErrorPrediction
+        layerTypes=Sigmoid
+        applyMeanVarNorm=false
+        initValueScale=1.0
+        uniformInit=true
+        needPrior=false
+    ]
+    SGD=[
+        epochSize=262144
+        minibatchSize=8192
+        learningRatesPerMB=0.01
+        numMBsToShowResult=4
+        momentumPerSample=0
+        dropoutRate=0.0
+        maxEpochs=40
+        ParallelTrain=[
+            parallelizationMethod=DataParallelSGD
+            distributedMBReading=true
+            parallelizationStartEpoch=1
+            DataParallelSGD=[
+                gradientBits=1
+            ]
+        ]
+        gradUpdateType=None
+        normWithAveMultiplier=true
+        clippingThresholdPerSample=1#INF
+    ]
+]
+
+configparameters: ffn.config:WorkDir=/var/storage/shared/ipgsp/sys/jobs/application_1447977864059_0303
+configparameters: ffn.config:WorkDir1=/var/storage/shared/ipgsp/alexeyk/benchmarks/
+<<<<<<<<<<<<<<<<<<<< PROCESSED CONFIG WITH ALL VARIABLES RESOLVED <<<<<<<<<<<<<<<<<<<<
+command: Train 
+precision = float
+CNTKModelPath: /var/storage/shared/ipgsp/sys/jobs/application_1447977864059_0303/models/cntk
+CNTKCommandTrainInfo: Train : 40
+CNTKCommandTrainInfo: CNTKNoMoreCommands_Total : 40
+CNTKCommandTrainBegin: Train
+LockDevice: Failed to lock GPU 2 for exclusive use.
+LockDevice: Locked GPU 3 to test availability.
+LockDevice: Unlocked GPU 3 after testing.
+LockDevice: Locked GPU 1 to test availability.
+LockDevice: Unlocked GPU 1 after testing.
+LockDevice: Locked GPU 0 to test availability.
+LockDevice: Unlocked GPU 0 after testing.
+LockDevice: Locked GPU 3 for exclusive use.
+SimpleNetworkBuilder Using GPU 3
+Reading UCI file /var/storage/shared/ipgsp/alexeyk/benchmarks//data.txt
+SetUniformRandomValue (GPU): creating curand object with seed 1, sizeof(ElemType)==4
+
+Post-processing network...
+
+4 roots:
+	HLast = Plus
+	CrossEntropyWithSoftmax = CrossEntropyWithSoftmax
+	EvalErrorPrediction = ErrorPrediction
+	PosteriorProb = Softmax
+FormNestedNetwork: WARNING: Was called twice for HLast Plus operation
+FormNestedNetwork: WARNING: Was called twice for CrossEntropyWithSoftmax CrossEntropyWithSoftmax operation
+FormNestedNetwork: WARNING: Was called twice for EvalErrorPrediction ErrorPrediction operation
+FormNestedNetwork: WARNING: Was called twice for PosteriorProb Softmax operation
+
+
+Validating for node HLast. 25 nodes to process in pass 1.
+
+Validating --> W4 = LearnableParameter -> [10000, 2048]
+Validating --> W3 = LearnableParameter -> [2048, 2048]
+Validating --> W2 = LearnableParameter -> [2048, 2048]
+Validating --> W1 = LearnableParameter -> [2048, 2048]
+Validating --> W0 = LearnableParameter -> [2048, 512]
+Validating --> features = InputValue -> [512, MBSize 3]
+Validating --> W0*features = Times(W0[2048, 512], features[512, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B0 = LearnableParameter -> [2048, 1]
+Validating --> W0*features+B0 = Plus(W0*features[2048, MBSize 3], B0[2048, 1]) -> [2048, MBSize 0]
+Validating --> H1 = Sigmoid(W0*features+B0[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> W1*H1 = Times(W1[2048, 2048], H1[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> B1 = LearnableParameter -> [2048, 1]
+Validating --> W1*H1+B1 = Plus(W1*H1[2048, MBSize 0], B1[2048, 1]) -> [2048, MBSize 0]
+Validating --> H2 = Sigmoid(W1*H1+B1[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> W2*H2 = Times(W2[2048, 2048], H2[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> B2 = LearnableParameter -> [2048, 1]
+Validating --> W2*H2+B2 = Plus(W2*H2[2048, MBSize 0], B2[2048, 1]) -> [2048, MBSize 0]
+Validating --> H3 = Sigmoid(W2*H2+B2[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> W3*H3 = Times(W3[2048, 2048], H3[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> B3 = LearnableParameter -> [2048, 1]
+Validating --> W3*H3+B3 = Plus(W3*H3[2048, MBSize 0], B3[2048, 1]) -> [2048, MBSize 0]
+Validating --> H4 = Sigmoid(W3*H3+B3[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> W4*H3 = Times(W4[10000, 2048], H4[2048, MBSize 0]) -> [10000, MBSize 0]
+Validating --> B4 = LearnableParameter -> [10000, 1]
+Validating --> HLast = Plus(W4*H3[10000, MBSize 0], B4[10000, 1]) -> [10000, MBSize 0]
+
+Validating for node HLast. 14 nodes to process in pass 2.
+
+Validating --> W4 = LearnableParameter -> [10000, 2048]
+Validating --> W3 = LearnableParameter -> [2048, 2048]
+Validating --> W2 = LearnableParameter -> [2048, 2048]
+Validating --> W1 = LearnableParameter -> [2048, 2048]
+Validating --> W0 = LearnableParameter -> [2048, 512]
+Validating --> features = InputValue -> [512, MBSize 3]
+Validating --> W0*features = Times(W0[2048, 512], features[512, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B0 = LearnableParameter -> [2048, 1]
+Validating --> W0*features+B0 = Plus(W0*features[2048, MBSize 3], B0[2048, 1]) -> [2048, MBSize 0]
+Validating --> H1 = Sigmoid(W0*features+B0[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> W1*H1 = Times(W1[2048, 2048], H1[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> B1 = LearnableParameter -> [2048, 1]
+Validating --> W1*H1+B1 = Plus(W1*H1[2048, MBSize 0], B1[2048, 1]) -> [2048, MBSize 0]
+Validating --> H2 = Sigmoid(W1*H1+B1[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> W2*H2 = Times(W2[2048, 2048], H2[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> B2 = LearnableParameter -> [2048, 1]
+Validating --> W2*H2+B2 = Plus(W2*H2[2048, MBSize 0], B2[2048, 1]) -> [2048, MBSize 0]
+Validating --> H3 = Sigmoid(W2*H2+B2[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> W3*H3 = Times(W3[2048, 2048], H3[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> B3 = LearnableParameter -> [2048, 1]
+Validating --> W3*H3+B3 = Plus(W3*H3[2048, MBSize 0], B3[2048, 1]) -> [2048, MBSize 0]
+Validating --> H4 = Sigmoid(W3*H3+B3[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> W4*H3 = Times(W4[10000, 2048], H4[2048, MBSize 0]) -> [10000, MBSize 0]
+Validating --> B4 = LearnableParameter -> [10000, 1]
+Validating --> HLast = Plus(W4*H3[10000, MBSize 0], B4[10000, 1]) -> [10000, MBSize 0]
+
+Validating for node HLast, final verification.
+
+Validating --> W4 = LearnableParameter -> [10000, 2048]
+Validating --> W3 = LearnableParameter -> [2048, 2048]
+Validating --> W2 = LearnableParameter -> [2048, 2048]
+Validating --> W1 = LearnableParameter -> [2048, 2048]
+Validating --> W0 = LearnableParameter -> [2048, 512]
+Validating --> features = InputValue -> [512, MBSize 3]
+Validating --> W0*features = Times(W0[2048, 512], features[512, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B0 = LearnableParameter -> [2048, 1]
+Validating --> W0*features+B0 = Plus(W0*features[2048, MBSize 3], B0[2048, 1]) -> [2048, MBSize 0]
+Validating --> H1 = Sigmoid(W0*features+B0[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> W1*H1 = Times(W1[2048, 2048], H1[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> B1 = LearnableParameter -> [2048, 1]
+Validating --> W1*H1+B1 = Plus(W1*H1[2048, MBSize 0], B1[2048, 1]) -> [2048, MBSize 0]
+Validating --> H2 = Sigmoid(W1*H1+B1[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> W2*H2 = Times(W2[2048, 2048], H2[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> B2 = LearnableParameter -> [2048, 1]
+Validating --> W2*H2+B2 = Plus(W2*H2[2048, MBSize 0], B2[2048, 1]) -> [2048, MBSize 0]
+Validating --> H3 = Sigmoid(W2*H2+B2[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> W3*H3 = Times(W3[2048, 2048], H3[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> B3 = LearnableParameter -> [2048, 1]
+Validating --> W3*H3+B3 = Plus(W3*H3[2048, MBSize 0], B3[2048, 1]) -> [2048, MBSize 0]
+Validating --> H4 = Sigmoid(W3*H3+B3[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> W4*H3 = Times(W4[10000, 2048], H4[2048, MBSize 0]) -> [10000, MBSize 0]
+Validating --> B4 = LearnableParameter -> [10000, 1]
+Validating --> HLast = Plus(W4*H3[10000, MBSize 0], B4[10000, 1]) -> [10000, MBSize 0]
+
+10 out of 25 nodes do not share the minibatch layout with the input data.
+
+
+Validating for node CrossEntropyWithSoftmax. 27 nodes to process in pass 1.
+
+Validating --> labels = InputValue -> [10000, MBSize 3]
+Validating --> W4 = LearnableParameter -> [10000, 2048]
+Validating --> W3 = LearnableParameter -> [2048, 2048]
+Validating --> W2 = LearnableParameter -> [2048, 2048]
+Validating --> W1 = LearnableParameter -> [2048, 2048]
+Validating --> W0 = LearnableParameter -> [2048, 512]
+Validating --> features = InputValue -> [512, MBSize 3]
+Validating --> W0*features = Times(W0[2048, 512], features[512, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B0 = LearnableParameter -> [2048, 1]
+Validating --> W0*features+B0 = Plus(W0*features[2048, MBSize 3], B0[2048, 1]) -> [2048, MBSize 0]
+Validating --> H1 = Sigmoid(W0*features+B0[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> W1*H1 = Times(W1[2048, 2048], H1[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> B1 = LearnableParameter -> [2048, 1]
+Validating --> W1*H1+B1 = Plus(W1*H1[2048, MBSize 0], B1[2048, 1]) -> [2048, MBSize 0]
+Validating --> H2 = Sigmoid(W1*H1+B1[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> W2*H2 = Times(W2[2048, 2048], H2[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> B2 = LearnableParameter -> [2048, 1]
+Validating --> W2*H2+B2 = Plus(W2*H2[2048, MBSize 0], B2[2048, 1]) -> [2048, MBSize 0]
+Validating --> H3 = Sigmoid(W2*H2+B2[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> W3*H3 = Times(W3[2048, 2048], H3[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> B3 = LearnableParameter -> [2048, 1]
+Validating --> W3*H3+B3 = Plus(W3*H3[2048, MBSize 0], B3[2048, 1]) -> [2048, MBSize 0]
+Validating --> H4 = Sigmoid(W3*H3+B3[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> W4*H3 = Times(W4[10000, 2048], H4[2048, MBSize 0]) -> [10000, MBSize 0]
+Validating --> B4 = LearnableParameter -> [10000, 1]
+Validating --> HLast = Plus(W4*H3[10000, MBSize 0], B4[10000, 1]) -> [10000, MBSize 0]
+Validating --> CrossEntropyWithSoftmax = CrossEntropyWithSoftmax(labels[10000, MBSize 3], HLast[10000, MBSize 0]) -> [1, 1]
+
+Validating for node CrossEntropyWithSoftmax. 15 nodes to process in pass 2.
+
+Validating --> labels = InputValue -> [10000, MBSize 3]
+Validating --> W4 = LearnableParameter -> [10000, 2048]
+Validating --> W3 = LearnableParameter -> [2048, 2048]
+Validating --> W2 = LearnableParameter -> [2048, 2048]
+Validating --> W1 = LearnableParameter -> [2048, 2048]
+Validating --> W0 = LearnableParameter -> [2048, 512]
+Validating --> features = InputValue -> [512, MBSize 3]
+Validating --> W0*features = Times(W0[2048, 512], features[512, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B0 = LearnableParameter -> [2048, 1]
+Validating --> W0*features+B0 = Plus(W0*features[2048, MBSize 3], B0[2048, 1]) -> [2048, MBSize 0]
+Validating --> H1 = Sigmoid(W0*features+B0[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> W1*H1 = Times(W1[2048, 2048], H1[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> B1 = LearnableParameter -> [2048, 1]
+Validating --> W1*H1+B1 = Plus(W1*H1[2048, MBSize 0], B1[2048, 1]) -> [2048, MBSize 0]
+Validating --> H2 = Sigmoid(W1*H1+B1[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> W2*H2 = Times(W2[2048, 2048], H2[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> B2 = LearnableParameter -> [2048, 1]
+Validating --> W2*H2+B2 = Plus(W2*H2[2048, MBSize 0], B2[2048, 1]) -> [2048, MBSize 0]
+Validating --> H3 = Sigmoid(W2*H2+B2[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> W3*H3 = Times(W3[2048, 2048], H3[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> B3 = LearnableParameter -> [2048, 1]
+Validating --> W3*H3+B3 = Plus(W3*H3[2048, MBSize 0], B3[2048, 1]) -> [2048, MBSize 0]
+Validating --> H4 = Sigmoid(W3*H3+B3[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> W4*H3 = Times(W4[10000, 2048], H4[2048, MBSize 0]) -> [10000, MBSize 0]
+Validating --> B4 = LearnableParameter -> [10000, 1]
+Validating --> HLast = Plus(W4*H3[10000, MBSize 0], B4[10000, 1]) -> [10000, MBSize 0]
+Validating --> CrossEntropyWithSoftmax = CrossEntropyWithSoftmax(labels[10000, MBSize 3], HLast[10000, MBSize 0]) -> [1, 1]
+
+Validating for node CrossEntropyWithSoftmax, final verification.
+
+Validating --> labels = InputValue -> [10000, MBSize 3]
+Validating --> W4 = LearnableParameter -> [10000, 2048]
+Validating --> W3 = LearnableParameter -> [2048, 2048]
+Validating --> W2 = LearnableParameter -> [2048, 2048]
+Validating --> W1 = LearnableParameter -> [2048, 2048]
+Validating --> W0 = LearnableParameter -> [2048, 512]
+Validating --> features = InputValue -> [512, MBSize 3]
+Validating --> W0*features = Times(W0[2048, 512], features[512, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B0 = LearnableParameter -> [2048, 1]
+Validating --> W0*features+B0 = Plus(W0*features[2048, MBSize 3], B0[2048, 1]) -> [2048, MBSize 0]
+Validating --> H1 = Sigmoid(W0*features+B0[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> W1*H1 = Times(W1[2048, 2048], H1[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> B1 = LearnableParameter -> [2048, 1]
+Validating --> W1*H1+B1 = Plus(W1*H1[2048, MBSize 0], B1[2048, 1]) -> [2048, MBSize 0]
+Validating --> H2 = Sigmoid(W1*H1+B1[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> W2*H2 = Times(W2[2048, 2048], H2[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> B2 = LearnableParameter -> [2048, 1]
+Validating --> W2*H2+B2 = Plus(W2*H2[2048, MBSize 0], B2[2048, 1]) -> [2048, MBSize 0]
+Validating --> H3 = Sigmoid(W2*H2+B2[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> W3*H3 = Times(W3[2048, 2048], H3[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> B3 = LearnableParameter -> [2048, 1]
+Validating --> W3*H3+B3 = Plus(W3*H3[2048, MBSize 0], B3[2048, 1]) -> [2048, MBSize 0]
+Validating --> H4 = Sigmoid(W3*H3+B3[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> W4*H3 = Times(W4[10000, 2048], H4[2048, MBSize 0]) -> [10000, MBSize 0]
+Validating --> B4 = LearnableParameter -> [10000, 1]
+Validating --> HLast = Plus(W4*H3[10000, MBSize 0], B4[10000, 1]) -> [10000, MBSize 0]
+Validating --> CrossEntropyWithSoftmax = CrossEntropyWithSoftmax(labels[10000, MBSize 3], HLast[10000, MBSize 0]) -> [1, 1]
+
+11 out of 27 nodes do not share the minibatch layout with the input data.
+
+
+Validating for node EvalErrorPrediction. 27 nodes to process in pass 1.
+
+Validating --> labels = InputValue -> [10000, MBSize 3]
+Validating --> W4 = LearnableParameter -> [10000, 2048]
+Validating --> W3 = LearnableParameter -> [2048, 2048]
+Validating --> W2 = LearnableParameter -> [2048, 2048]
+Validating --> W1 = LearnableParameter -> [2048, 2048]
+Validating --> W0 = LearnableParameter -> [2048, 512]
+Validating --> features = InputValue -> [512, MBSize 3]
+Validating --> W0*features = Times(W0[2048, 512], features[512, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B0 = LearnableParameter -> [2048, 1]
+Validating --> W0*features+B0 = Plus(W0*features[2048, MBSize 3], B0[2048, 1]) -> [2048, MBSize 0]
+Validating --> H1 = Sigmoid(W0*features+B0[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> W1*H1 = Times(W1[2048, 2048], H1[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> B1 = LearnableParameter -> [2048, 1]
+Validating --> W1*H1+B1 = Plus(W1*H1[2048, MBSize 0], B1[2048, 1]) -> [2048, MBSize 0]
+Validating --> H2 = Sigmoid(W1*H1+B1[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> W2*H2 = Times(W2[2048, 2048], H2[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> B2 = LearnableParameter -> [2048, 1]
+Validating --> W2*H2+B2 = Plus(W2*H2[2048, MBSize 0], B2[2048, 1]) -> [2048, MBSize 0]
+Validating --> H3 = Sigmoid(W2*H2+B2[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> W3*H3 = Times(W3[2048, 2048], H3[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> B3 = LearnableParameter -> [2048, 1]
+Validating --> W3*H3+B3 = Plus(W3*H3[2048, MBSize 0], B3[2048, 1]) -> [2048, MBSize 0]
+Validating --> H4 = Sigmoid(W3*H3+B3[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> W4*H3 = Times(W4[10000, 2048], H4[2048, MBSize 0]) -> [10000, MBSize 0]
+Validating --> B4 = LearnableParameter -> [10000, 1]
+Validating --> HLast = Plus(W4*H3[10000, MBSize 0], B4[10000, 1]) -> [10000, MBSize 0]
+Validating --> EvalErrorPrediction = ErrorPrediction(labels[10000, MBSize 3], HLast[10000, MBSize 0]) -> [1, 1]
+
+Validating for node EvalErrorPrediction. 15 nodes to process in pass 2.
+
+Validating --> labels = InputValue -> [10000, MBSize 3]
+Validating --> W4 = LearnableParameter -> [10000, 2048]
+Validating --> W3 = LearnableParameter -> [2048, 2048]
+Validating --> W2 = LearnableParameter -> [2048, 2048]
+Validating --> W1 = LearnableParameter -> [2048, 2048]
+Validating --> W0 = LearnableParameter -> [2048, 512]
+Validating --> features = InputValue -> [512, MBSize 3]
+Validating --> W0*features = Times(W0[2048, 512], features[512, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B0 = LearnableParameter -> [2048, 1]
+Validating --> W0*features+B0 = Plus(W0*features[2048, MBSize 3], B0[2048, 1]) -> [2048, MBSize 0]
+Validating --> H1 = Sigmoid(W0*features+B0[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> W1*H1 = Times(W1[2048, 2048], H1[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> B1 = LearnableParameter -> [2048, 1]
+Validating --> W1*H1+B1 = Plus(W1*H1[2048, MBSize 0], B1[2048, 1]) -> [2048, MBSize 0]
+Validating --> H2 = Sigmoid(W1*H1+B1[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> W2*H2 = Times(W2[2048, 2048], H2[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> B2 = LearnableParameter -> [2048, 1]
+Validating --> W2*H2+B2 = Plus(W2*H2[2048, MBSize 0], B2[2048, 1]) -> [2048, MBSize 0]
+Validating --> H3 = Sigmoid(W2*H2+B2[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> W3*H3 = Times(W3[2048, 2048], H3[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> B3 = LearnableParameter -> [2048, 1]
+Validating --> W3*H3+B3 = Plus(W3*H3[2048, MBSize 0], B3[2048, 1]) -> [2048, MBSize 0]
+Validating --> H4 = Sigmoid(W3*H3+B3[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> W4*H3 = Times(W4[10000, 2048], H4[2048, MBSize 0]) -> [10000, MBSize 0]
+Validating --> B4 = LearnableParameter -> [10000, 1]
+Validating --> HLast = Plus(W4*H3[10000, MBSize 0], B4[10000, 1]) -> [10000, MBSize 0]
+Validating --> EvalErrorPrediction = ErrorPrediction(labels[10000, MBSize 3], HLast[10000, MBSize 0]) -> [1, 1]
+
+Validating for node EvalErrorPrediction, final verification.
+
+Validating --> labels = InputValue -> [10000, MBSize 3]
+Validating --> W4 = LearnableParameter -> [10000, 2048]
+Validating --> W3 = LearnableParameter -> [2048, 2048]
+Validating --> W2 = LearnableParameter -> [2048, 2048]
+Validating --> W1 = LearnableParameter -> [2048, 2048]
+Validating --> W0 = LearnableParameter -> [2048, 512]
+Validating --> features = InputValue -> [512, MBSize 3]
+Validating --> W0*features = Times(W0[2048, 512], features[512, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B0 = LearnableParameter -> [2048, 1]
+Validating --> W0*features+B0 = Plus(W0*features[2048, MBSize 3], B0[2048, 1]) -> [2048, MBSize 0]
+Validating --> H1 = Sigmoid(W0*features+B0[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> W1*H1 = Times(W1[2048, 2048], H1[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> B1 = LearnableParameter -> [2048, 1]
+Validating --> W1*H1+B1 = Plus(W1*H1[2048, MBSize 0], B1[2048, 1]) -> [2048, MBSize 0]
+Validating --> H2 = Sigmoid(W1*H1+B1[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> W2*H2 = Times(W2[2048, 2048], H2[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> B2 = LearnableParameter -> [2048, 1]
+Validating --> W2*H2+B2 = Plus(W2*H2[2048, MBSize 0], B2[2048, 1]) -> [2048, MBSize 0]
+Validating --> H3 = Sigmoid(W2*H2+B2[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> W3*H3 = Times(W3[2048, 2048], H3[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> B3 = LearnableParameter -> [2048, 1]
+Validating --> W3*H3+B3 = Plus(W3*H3[2048, MBSize 0], B3[2048, 1]) -> [2048, MBSize 0]
+Validating --> H4 = Sigmoid(W3*H3+B3[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> W4*H3 = Times(W4[10000, 2048], H4[2048, MBSize 0]) -> [10000, MBSize 0]
+Validating --> B4 = LearnableParameter -> [10000, 1]
+Validating --> HLast = Plus(W4*H3[10000, MBSize 0], B4[10000, 1]) -> [10000, MBSize 0]
+Validating --> EvalErrorPrediction = ErrorPrediction(labels[10000, MBSize 3], HLast[10000, MBSize 0]) -> [1, 1]
+
+11 out of 27 nodes do not share the minibatch layout with the input data.
+
+
+Validating for node PosteriorProb. 26 nodes to process in pass 1.
+
+Validating --> W4 = LearnableParameter -> [10000, 2048]
+Validating --> W3 = LearnableParameter -> [2048, 2048]
+Validating --> W2 = LearnableParameter -> [2048, 2048]
+Validating --> W1 = LearnableParameter -> [2048, 2048]
+Validating --> W0 = LearnableParameter -> [2048, 512]
+Validating --> features = InputValue -> [512, MBSize 3]
+Validating --> W0*features = Times(W0[2048, 512], features[512, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B0 = LearnableParameter -> [2048, 1]
+Validating --> W0*features+B0 = Plus(W0*features[2048, MBSize 3], B0[2048, 1]) -> [2048, MBSize 0]
+Validating --> H1 = Sigmoid(W0*features+B0[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> W1*H1 = Times(W1[2048, 2048], H1[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> B1 = LearnableParameter -> [2048, 1]
+Validating --> W1*H1+B1 = Plus(W1*H1[2048, MBSize 0], B1[2048, 1]) -> [2048, MBSize 0]
+Validating --> H2 = Sigmoid(W1*H1+B1[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> W2*H2 = Times(W2[2048, 2048], H2[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> B2 = LearnableParameter -> [2048, 1]
+Validating --> W2*H2+B2 = Plus(W2*H2[2048, MBSize 0], B2[2048, 1]) -> [2048, MBSize 0]
+Validating --> H3 = Sigmoid(W2*H2+B2[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> W3*H3 = Times(W3[2048, 2048], H3[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> B3 = LearnableParameter -> [2048, 1]
+Validating --> W3*H3+B3 = Plus(W3*H3[2048, MBSize 0], B3[2048, 1]) -> [2048, MBSize 0]
+Validating --> H4 = Sigmoid(W3*H3+B3[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> W4*H3 = Times(W4[10000, 2048], H4[2048, MBSize 0]) -> [10000, MBSize 0]
+Validating --> B4 = LearnableParameter -> [10000, 1]
+Validating --> HLast = Plus(W4*H3[10000, MBSize 0], B4[10000, 1]) -> [10000, MBSize 0]
+Validating --> PosteriorProb = Softmax(HLast[10000, MBSize 0]) -> [10000, MBSize 0]
+
+Validating for node PosteriorProb. 15 nodes to process in pass 2.
+
+Validating --> W4 = LearnableParameter -> [10000, 2048]
+Validating --> W3 = LearnableParameter -> [2048, 2048]
+Validating --> W2 = LearnableParameter -> [2048, 2048]
+Validating --> W1 = LearnableParameter -> [2048, 2048]
+Validating --> W0 = LearnableParameter -> [2048, 512]
+Validating --> features = InputValue -> [512, MBSize 3]
+Validating --> W0*features = Times(W0[2048, 512], features[512, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B0 = LearnableParameter -> [2048, 1]
+Validating --> W0*features+B0 = Plus(W0*features[2048, MBSize 3], B0[2048, 1]) -> [2048, MBSize 0]
+Validating --> H1 = Sigmoid(W0*features+B0[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> W1*H1 = Times(W1[2048, 2048], H1[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> B1 = LearnableParameter -> [2048, 1]
+Validating --> W1*H1+B1 = Plus(W1*H1[2048, MBSize 0], B1[2048, 1]) -> [2048, MBSize 0]
+Validating --> H2 = Sigmoid(W1*H1+B1[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> W2*H2 = Times(W2[2048, 2048], H2[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> B2 = LearnableParameter -> [2048, 1]
+Validating --> W2*H2+B2 = Plus(W2*H2[2048, MBSize 0], B2[2048, 1]) -> [2048, MBSize 0]
+Validating --> H3 = Sigmoid(W2*H2+B2[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> W3*H3 = Times(W3[2048, 2048], H3[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> B3 = LearnableParameter -> [2048, 1]
+Validating --> W3*H3+B3 = Plus(W3*H3[2048, MBSize 0], B3[2048, 1]) -> [2048, MBSize 0]
+Validating --> H4 = Sigmoid(W3*H3+B3[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> W4*H3 = Times(W4[10000, 2048], H4[2048, MBSize 0]) -> [10000, MBSize 0]
+Validating --> B4 = LearnableParameter -> [10000, 1]
+Validating --> HLast = Plus(W4*H3[10000, MBSize 0], B4[10000, 1]) -> [10000, MBSize 0]
+Validating --> PosteriorProb = Softmax(HLast[10000, MBSize 0]) -> [10000, MBSize 0]
+
+Validating for node PosteriorProb, final verification.
+
+Validating --> W4 = LearnableParameter -> [10000, 2048]
+Validating --> W3 = LearnableParameter -> [2048, 2048]
+Validating --> W2 = LearnableParameter -> [2048, 2048]
+Validating --> W1 = LearnableParameter -> [2048, 2048]
+Validating --> W0 = LearnableParameter -> [2048, 512]
+Validating --> features = InputValue -> [512, MBSize 3]
+Validating --> W0*features = Times(W0[2048, 512], features[512, MBSize 3]) -> [2048, MBSize 3]
+Validating --> B0 = LearnableParameter -> [2048, 1]
+Validating --> W0*features+B0 = Plus(W0*features[2048, MBSize 3], B0[2048, 1]) -> [2048, MBSize 0]
+Validating --> H1 = Sigmoid(W0*features+B0[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> W1*H1 = Times(W1[2048, 2048], H1[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> B1 = LearnableParameter -> [2048, 1]
+Validating --> W1*H1+B1 = Plus(W1*H1[2048, MBSize 0], B1[2048, 1]) -> [2048, MBSize 0]
+Validating --> H2 = Sigmoid(W1*H1+B1[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> W2*H2 = Times(W2[2048, 2048], H2[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> B2 = LearnableParameter -> [2048, 1]
+Validating --> W2*H2+B2 = Plus(W2*H2[2048, MBSize 0], B2[2048, 1]) -> [2048, MBSize 0]
+Validating --> H3 = Sigmoid(W2*H2+B2[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> W3*H3 = Times(W3[2048, 2048], H3[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> B3 = LearnableParameter -> [2048, 1]
+Validating --> W3*H3+B3 = Plus(W3*H3[2048, MBSize 0], B3[2048, 1]) -> [2048, MBSize 0]
+Validating --> H4 = Sigmoid(W3*H3+B3[2048, MBSize 0]) -> [2048, MBSize 0]
+Validating --> W4*H3 = Times(W4[10000, 2048], H4[2048, MBSize 0]) -> [10000, MBSize 0]
+Validating --> B4 = LearnableParameter -> [10000, 1]
+Validating --> HLast = Plus(W4*H3[10000, MBSize 0], B4[10000, 1]) -> [10000, MBSize 0]
+Validating --> PosteriorProb = Softmax(HLast[10000, MBSize 0]) -> [10000, MBSize 0]
+
+10 out of 26 nodes do not share the minibatch layout with the input data.
+FormNestedNetwork: WARNING: Was called twice for HLast Plus operation
+FormNestedNetwork: WARNING: Was called twice for CrossEntropyWithSoftmax CrossEntropyWithSoftmax operation
+FormNestedNetwork: WARNING: Was called twice for EvalErrorPrediction ErrorPrediction operation
+FormNestedNetwork: WARNING: Was called twice for PosteriorProb Softmax operation
+
+Post-processing network complete.
+
+SGD using GPU 3.
+
+Training criterion node(s):
+	CrossEntropyWithSoftmax = CrossEntropyWithSoftmax
+
+Evaluation criterion node(s):
+	EvalErrorPrediction = ErrorPrediction
+
+
+Allocating matrices for gradient computing
+FormNestedNetwork: WARNING: Was called twice for CrossEntropyWithSoftmax CrossEntropyWithSoftmax operation
+No PreCompute nodes found, skipping PreCompute step
+Set Max Temp Mem Size For Convolution Nodes to 0 samples.
+Starting Epoch 1: learning rate per sample = 0.000001  effective momentum = 0.000000  momentum as time constant = 0.0 samples
+starting at epoch 0 counting lines to determine record count
+
+ 262144 records found
+starting epoch 0 at record count 0, and file position 0
+already there from last epoch
+
+Starting minibatch loop, DataParallelSGD training (MyRank = 0, NumNodes = 16, NumGradientBits = 1), distributed reading is ENABLED.
+RandomOrdering: 51772 retries for 262144 elements (19.7%) to ensure window condition
+RandomOrdering: recached sequence for seed 0: 116886, 75194, ...
+ Epoch[ 1 of 40]-Minibatch[   1-   4, 12.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.42259073; EvalErr[0]PerSample = 0.99984741; TotalTime = 9.5875s; SamplesPerSecond = 3417.8
+ Epoch[ 1 of 40]-Minibatch[   5-   8, 25.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.42736651; EvalErr[0]PerSample = 0.99987793; TotalTime = 3.0686s; SamplesPerSecond = 10678.5
+ Epoch[ 1 of 40]-Minibatch[   9-  12, 37.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.42788798; EvalErr[0]PerSample = 0.99996948; TotalTime = 0.3306s; SamplesPerSecond = 99103.0
+ Epoch[ 1 of 40]-Minibatch[  13-  16, 50.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.42525288; EvalErr[0]PerSample = 0.99984741; TotalTime = 0.3445s; SamplesPerSecond = 95130.5
+ Epoch[ 1 of 40]-Minibatch[  17-  20, 62.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.42417398; EvalErr[0]PerSample = 0.99984741; TotalTime = 0.3438s; SamplesPerSecond = 95309.8
+ Epoch[ 1 of 40]-Minibatch[  21-  24, 75.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.42394452; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.3424s; SamplesPerSecond = 95713.8
+ Epoch[ 1 of 40]-Minibatch[  25-  28, 87.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.42183685; EvalErr[0]PerSample = 0.99984741; TotalTime = 4.5423s; SamplesPerSecond = 7213.9
+ Epoch[ 1 of 40]-Minibatch[  29-  32, 100.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.42747353; EvalErr[0]PerSample = 0.99990845; TotalTime = 0.3232s; SamplesPerSecond = 101393.0
+Finished Epoch[ 1 of 40]: [Training Set] TrainLossPerSample = 9.4250659; EvalErrPerSample = 0.99987793; AvgLearningRatePerSample = 1.2207031e-06; EpochTime=25.3473
+Starting Epoch 2: learning rate per sample = 0.000001  effective momentum = 0.000000  momentum as time constant = 0.0 samples
+starting epoch 1 at record count 262144, and file position 0
+already there from last epoch
+
+Starting minibatch loop, DataParallelSGD training (MyRank = 0, NumNodes = 16, NumGradientBits = 1), distributed reading is ENABLED.
+RandomOrdering: 51772 retries for 262144 elements (19.7%) to ensure window condition
+RandomOrdering: recached sequence for seed 1: 116886, 75194, ...
+ Epoch[ 2 of 40]-Minibatch[   1-   4, 12.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.40983269; EvalErr[0]PerSample = 0.99984741; TotalTime = 0.4243s; SamplesPerSecond = 77236.0
+ Epoch[ 2 of 40]-Minibatch[   5-   8, 25.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.41461319; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.3368s; SamplesPerSecond = 97282.3
+ Epoch[ 2 of 40]-Minibatch[   9-  12, 37.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.41516325; EvalErr[0]PerSample = 0.99996948; TotalTime = 0.3365s; SamplesPerSecond = 97372.2
+ Epoch[ 2 of 40]-Minibatch[  13-  16, 50.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.41267595; EvalErr[0]PerSample = 0.99984741; TotalTime = 0.3345s; SamplesPerSecond = 97967.9
+ Epoch[ 2 of 40]-Minibatch[  17-  20, 62.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.41170582; EvalErr[0]PerSample = 0.99984741; TotalTime = 0.3356s; SamplesPerSecond = 97637.7
+ Epoch[ 2 of 40]-Minibatch[  21-  24, 75.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.41162580; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.3334s; SamplesPerSecond = 98292.9
+ Epoch[ 2 of 40]-Minibatch[  25-  28, 87.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.40967131; EvalErr[0]PerSample = 0.99984741; TotalTime = 0.3354s; SamplesPerSecond = 97702.3
+ Epoch[ 2 of 40]-Minibatch[  29-  32, 100.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.41557297; EvalErr[0]PerSample = 0.99990845; TotalTime = 0.3318s; SamplesPerSecond = 98769.3
+Finished Epoch[ 2 of 40]: [Training Set] TrainLossPerSample = 9.4126076; EvalErrPerSample = 0.99987793; AvgLearningRatePerSample = 1.2207031e-06; EpochTime=2.79057
+Starting Epoch 3: learning rate per sample = 0.000001  effective momentum = 0.000000  momentum as time constant = 0.0 samples
+starting epoch 2 at record count 524288, and file position 0
+already there from last epoch
+
+Starting minibatch loop, DataParallelSGD training (MyRank = 0, NumNodes = 16, NumGradientBits = 1), distributed reading is ENABLED.
+RandomOrdering: 51800 retries for 262144 elements (19.8%) to ensure window condition
+RandomOrdering: recached sequence for seed 2: 10530, 63732, ...
+ Epoch[ 3 of 40]-Minibatch[   1-   4, 12.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.40353748; EvalErr[0]PerSample = 0.99969482; TotalTime = 0.4170s; SamplesPerSecond = 78586.2
+ Epoch[ 3 of 40]-Minibatch[   5-   8, 25.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.40035662; EvalErr[0]PerSample = 0.99990845; TotalTime = 0.3343s; SamplesPerSecond = 98010.7
+ Epoch[ 3 of 40]-Minibatch[   9-  12, 37.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.40281633; EvalErr[0]PerSample = 0.99993896; TotalTime = 0.3347s; SamplesPerSecond = 97917.2
+ Epoch[ 3 of 40]-Minibatch[  13-  16, 50.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.39844184; EvalErr[0]PerSample = 0.99984741; TotalTime = 0.3362s; SamplesPerSecond = 97471.0
+ Epoch[ 3 of 40]-Minibatch[  17-  20, 62.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.39797163; EvalErr[0]PerSample = 0.99981689; TotalTime = 0.3365s; SamplesPerSecond = 97388.7
+ Epoch[ 3 of 40]-Minibatch[  21-  24, 75.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.40322776; EvalErr[0]PerSample = 0.99990845; TotalTime = 0.3370s; SamplesPerSecond = 97246.3
+ Epoch[ 3 of 40]-Minibatch[  25-  28, 87.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.40233786; EvalErr[0]PerSample = 0.99993896; TotalTime = 0.3345s; SamplesPerSecond = 97952.9
+ Epoch[ 3 of 40]-Minibatch[  29-  32, 100.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.40067631; EvalErr[0]PerSample = 0.99996948; TotalTime = 0.3302s; SamplesPerSecond = 99231.1
+Finished Epoch[ 3 of 40]: [Training Set] TrainLossPerSample = 9.4011707; EvalErrPerSample = 0.99987793; AvgLearningRatePerSample = 1.2207031e-06; EpochTime=2.78207
+Starting Epoch 4: learning rate per sample = 0.000001  effective momentum = 0.000000  momentum as time constant = 0.0 samples
+starting epoch 3 at record count 786432, and file position 0
+already there from last epoch
+
+Starting minibatch loop, DataParallelSGD training (MyRank = 0, NumNodes = 16, NumGradientBits = 1), distributed reading is ENABLED.
+RandomOrdering: 51914 retries for 262144 elements (19.8%) to ensure window condition
+RandomOrdering: recached sequence for seed 3: 62103, 12834, ...
+ Epoch[ 4 of 40]-Minibatch[   1-   4, 12.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.39759320; EvalErr[0]PerSample = 0.99984741; TotalTime = 0.4188s; SamplesPerSecond = 78241.7
+ Epoch[ 4 of 40]-Minibatch[   5-   8, 25.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.38763350; EvalErr[0]PerSample = 0.99981689; TotalTime = 0.3363s; SamplesPerSecond = 97429.0
+ Epoch[ 4 of 40]-Minibatch[   9-  12, 37.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.39608163; EvalErr[0]PerSample = 0.99987793; TotalTime = 4.6437s; SamplesPerSecond = 7056.4
+ Epoch[ 4 of 40]-Minibatch[  13-  16, 50.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.38708170; EvalErr[0]PerSample = 0.99984741; TotalTime = 0.3345s; SamplesPerSecond = 97971.1
+ Epoch[ 4 of 40]-Minibatch[  17-  20, 62.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.39126147; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.3379s; SamplesPerSecond = 96975.1
+ Epoch[ 4 of 40]-Minibatch[  21-  24, 75.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.38402137; EvalErr[0]PerSample = 0.99996948; TotalTime = 0.3401s; SamplesPerSecond = 96349.5
+ Epoch[ 4 of 40]-Minibatch[  25-  28, 87.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.38991791; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.3390s; SamplesPerSecond = 96660.5
+ Epoch[ 4 of 40]-Minibatch[  29-  32, 100.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.39160965; EvalErr[0]PerSample = 0.99990845; TotalTime = 0.3312s; SamplesPerSecond = 98930.3
+Finished Epoch[ 4 of 40]: [Training Set] TrainLossPerSample = 9.3906501; EvalErrPerSample = 0.99987793; AvgLearningRatePerSample = 1.2207031e-06; EpochTime=7.10348
+Starting Epoch 5: learning rate per sample = 0.000001  effective momentum = 0.000000  momentum as time constant = 0.0 samples
+starting epoch 4 at record count 1048576, and file position 0
+already there from last epoch
+
+Starting minibatch loop, DataParallelSGD training (MyRank = 0, NumNodes = 16, NumGradientBits = 1), distributed reading is ENABLED.
+RandomOrdering: 51360 retries for 262144 elements (19.6%) to ensure window condition
+RandomOrdering: recached sequence for seed 4: 26710, 46708, ...
+ Epoch[ 5 of 40]-Minibatch[   1-   4, 12.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.38285537; EvalErr[0]PerSample = 0.99984741; TotalTime = 0.4200s; SamplesPerSecond = 78011.8
+ Epoch[ 5 of 40]-Minibatch[   5-   8, 25.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.38360573; EvalErr[0]PerSample = 0.99966431; TotalTime = 0.3339s; SamplesPerSecond = 98136.0
+ Epoch[ 5 of 40]-Minibatch[   9-  12, 37.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.37711827; EvalErr[0]PerSample = 0.99990845; TotalTime = 0.3371s; SamplesPerSecond = 97195.2
+ Epoch[ 5 of 40]-Minibatch[  13-  16, 50.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.38220796; EvalErr[0]PerSample = 0.99996948; TotalTime = 0.3348s; SamplesPerSecond = 97878.3
+ Epoch[ 5 of 40]-Minibatch[  17-  20, 62.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.37956594; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.3359s; SamplesPerSecond = 97541.2
+ Epoch[ 5 of 40]-Minibatch[  21-  24, 75.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.38004729; EvalErr[0]PerSample = 0.99996948; TotalTime = 0.3362s; SamplesPerSecond = 97465.2
+ Epoch[ 5 of 40]-Minibatch[  25-  28, 87.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.38432620; EvalErr[0]PerSample = 0.99993896; TotalTime = 2.9794s; SamplesPerSecond = 10998.2
+ Epoch[ 5 of 40]-Minibatch[  29-  32, 100.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.37798989; EvalErr[0]PerSample = 0.99984741; TotalTime = 0.3304s; SamplesPerSecond = 99173.2
+Finished Epoch[ 5 of 40]: [Training Set] TrainLossPerSample = 9.3809646; EvalErrPerSample = 0.99987793; AvgLearningRatePerSample = 1.2207031e-06; EpochTime=5.42961
+Starting Epoch 6: learning rate per sample = 0.000001  effective momentum = 0.000000  momentum as time constant = 0.0 samples
+starting epoch 5 at record count 1310720, and file position 0
+already there from last epoch
+
+Starting minibatch loop, DataParallelSGD training (MyRank = 0, NumNodes = 16, NumGradientBits = 1), distributed reading is ENABLED.
+RandomOrdering: 51922 retries for 262144 elements (19.8%) to ensure window condition
+RandomOrdering: recached sequence for seed 5: 117442, 81935, ...
+ Epoch[ 6 of 40]-Minibatch[   1-   4, 12.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.37506154; EvalErr[0]PerSample = 0.99990845; TotalTime = 4.4392s; SamplesPerSecond = 7381.5
+ Epoch[ 6 of 40]-Minibatch[   5-   8, 25.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.37794439; EvalErr[0]PerSample = 0.99975586; TotalTime = 0.3285s; SamplesPerSecond = 99748.6
+ Epoch[ 6 of 40]-Minibatch[   9-  12, 37.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.36366223; EvalErr[0]PerSample = 0.99990845; TotalTime = 0.3422s; SamplesPerSecond = 95756.9
+ Epoch[ 6 of 40]-Minibatch[  13-  16, 50.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.37157427; EvalErr[0]PerSample = 0.99990845; TotalTime = 0.3374s; SamplesPerSecond = 97118.6
+ Epoch[ 6 of 40]-Minibatch[  17-  20, 62.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.37000132; EvalErr[0]PerSample = 0.99990845; TotalTime = 0.3360s; SamplesPerSecond = 97525.0
+ Epoch[ 6 of 40]-Minibatch[  21-  24, 75.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.37497623; EvalErr[0]PerSample = 0.99984741; TotalTime = 0.3366s; SamplesPerSecond = 97354.0
+ Epoch[ 6 of 40]-Minibatch[  25-  28, 87.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.36722934; EvalErr[0]PerSample = 0.99993896; TotalTime = 0.3335s; SamplesPerSecond = 98242.5
+ Epoch[ 6 of 40]-Minibatch[  29-  32, 100.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.37566423; EvalErr[0]PerSample = 0.99984741; TotalTime = 0.3287s; SamplesPerSecond = 99685.4
+Finished Epoch[ 6 of 40]: [Training Set] TrainLossPerSample = 9.3720142; EvalErrPerSample = 0.99987793; AvgLearningRatePerSample = 1.2207031e-06; EpochTime=10.4904
+Starting Epoch 7: learning rate per sample = 0.000001  effective momentum = 0.000000  momentum as time constant = 0.0 samples
+starting epoch 6 at record count 1572864, and file position 0
+already there from last epoch
+
+Starting minibatch loop, DataParallelSGD training (MyRank = 0, NumNodes = 16, NumGradientBits = 1), distributed reading is ENABLED.
+RandomOrdering: 52007 retries for 262144 elements (19.8%) to ensure window condition
+RandomOrdering: recached sequence for seed 6: 110844, 19033, ...
+ Epoch[ 7 of 40]-Minibatch[   1-   4, 12.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.36284001; EvalErr[0]PerSample = 0.99978638; TotalTime = 0.4221s; SamplesPerSecond = 77638.8
+ Epoch[ 7 of 40]-Minibatch[   5-   8, 25.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.36855395; EvalErr[0]PerSample = 0.99984741; TotalTime = 0.3352s; SamplesPerSecond = 97751.6
+ Epoch[ 7 of 40]-Minibatch[   9-  12, 37.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.36600788; EvalErr[0]PerSample = 0.99990845; TotalTime = 0.3351s; SamplesPerSecond = 97792.7
+ Epoch[ 7 of 40]-Minibatch[  13-  16, 50.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.36031742; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.3350s; SamplesPerSecond = 97805.3
+ Epoch[ 7 of 40]-Minibatch[  17-  20, 62.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.36144584; EvalErr[0]PerSample = 0.99993896; TotalTime = 0.3356s; SamplesPerSecond = 97651.1
+ Epoch[ 7 of 40]-Minibatch[  21-  24, 75.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.36655763; EvalErr[0]PerSample = 0.99987793; TotalTime = 3.1760s; SamplesPerSecond = 10317.3
+ Epoch[ 7 of 40]-Minibatch[  25-  28, 87.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.35959728; EvalErr[0]PerSample = 0.99981689; TotalTime = 0.3348s; SamplesPerSecond = 97866.0
+ Epoch[ 7 of 40]-Minibatch[  29-  32, 100.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.36435039; EvalErr[0]PerSample = 0.99996948; TotalTime = 0.3303s; SamplesPerSecond = 99210.7
+Finished Epoch[ 7 of 40]: [Training Set] TrainLossPerSample = 9.3637088; EvalErrPerSample = 0.99987793; AvgLearningRatePerSample = 1.2207031e-06; EpochTime=5.62603
+Starting Epoch 8: learning rate per sample = 0.000001  effective momentum = 0.000000  momentum as time constant = 0.0 samples
+starting epoch 7 at record count 1835008, and file position 0
+already there from last epoch
+
+Starting minibatch loop, DataParallelSGD training (MyRank = 0, NumNodes = 16, NumGradientBits = 1), distributed reading is ENABLED.
+RandomOrdering: 51350 retries for 262144 elements (19.6%) to ensure window condition
+RandomOrdering: recached sequence for seed 7: 25753, 32063, ...
+ Epoch[ 8 of 40]-Minibatch[   1-   4, 12.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.35561293; EvalErr[0]PerSample = 0.99981689; TotalTime = 0.4190s; SamplesPerSecond = 78200.2
+ Epoch[ 8 of 40]-Minibatch[   5-   8, 25.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.35516080; EvalErr[0]PerSample = 1.00000000; TotalTime = 0.3366s; SamplesPerSecond = 97362.7
+ Epoch[ 8 of 40]-Minibatch[   9-  12, 37.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.35724065; EvalErr[0]PerSample = 0.99984741; TotalTime = 0.3394s; SamplesPerSecond = 96541.4
+ Epoch[ 8 of 40]-Minibatch[  13-  16, 50.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.35418911; EvalErr[0]PerSample = 0.99981689; TotalTime = 0.3385s; SamplesPerSecond = 96804.7
+ Epoch[ 8 of 40]-Minibatch[  17-  20, 62.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.35672031; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.3392s; SamplesPerSecond = 96613.7
+ Epoch[ 8 of 40]-Minibatch[  21-  24, 75.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.35932797; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.3346s; SamplesPerSecond = 97944.4
+ Epoch[ 8 of 40]-Minibatch[  25-  28, 87.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.35627975; EvalErr[0]PerSample = 0.99981689; TotalTime = 4.4348s; SamplesPerSecond = 7388.8
+ Epoch[ 8 of 40]-Minibatch[  29-  32, 100.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.35329553; EvalErr[0]PerSample = 0.99996948; TotalTime = 0.3261s; SamplesPerSecond = 100487.3
+Finished Epoch[ 8 of 40]: [Training Set] TrainLossPerSample = 9.3559784; EvalErrPerSample = 0.99987793; AvgLearningRatePerSample = 1.2207031e-06; EpochTime=6.88969
+Starting Epoch 9: learning rate per sample = 0.000001  effective momentum = 0.000000  momentum as time constant = 0.0 samples
+starting epoch 8 at record count 2097152, and file position 0
+already there from last epoch
+
+Starting minibatch loop, DataParallelSGD training (MyRank = 0, NumNodes = 16, NumGradientBits = 1), distributed reading is ENABLED.
+RandomOrdering: 52254 retries for 262144 elements (19.9%) to ensure window condition
+RandomOrdering: recached sequence for seed 8: 56584, 6021, ...
+ Epoch[ 9 of 40]-Minibatch[   1-   4, 12.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.35388929; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.4251s; SamplesPerSecond = 77080.9
+ Epoch[ 9 of 40]-Minibatch[   5-   8, 25.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.34681338; EvalErr[0]PerSample = 0.99990845; TotalTime = 0.3366s; SamplesPerSecond = 97358.6
+ Epoch[ 9 of 40]-Minibatch[   9-  12, 37.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.34760106; EvalErr[0]PerSample = 0.99972534; TotalTime = 0.3364s; SamplesPerSecond = 97414.5
+ Epoch[ 9 of 40]-Minibatch[  13-  16, 50.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.34725536; EvalErr[0]PerSample = 0.99984741; TotalTime = 3.7170s; SamplesPerSecond = 8815.6
+ Epoch[ 9 of 40]-Minibatch[  17-  20, 62.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.34450477; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.3455s; SamplesPerSecond = 94848.3
+ Epoch[ 9 of 40]-Minibatch[  21-  24, 75.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.34635775; EvalErr[0]PerSample = 0.99990845; TotalTime = 0.3445s; SamplesPerSecond = 95125.6
+ Epoch[ 9 of 40]-Minibatch[  25-  28, 87.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.34931986; EvalErr[0]PerSample = 0.99990845; TotalTime = 0.3410s; SamplesPerSecond = 96101.5
+ Epoch[ 9 of 40]-Minibatch[  29-  32, 100.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.35435694; EvalErr[0]PerSample = 0.99996948; TotalTime = 0.3339s; SamplesPerSecond = 98146.0
+Finished Epoch[ 9 of 40]: [Training Set] TrainLossPerSample = 9.3487623; EvalErrPerSample = 0.99987793; AvgLearningRatePerSample = 1.2207031e-06; EpochTime=6.20149
+Starting Epoch 10: learning rate per sample = 0.000001  effective momentum = 0.000000  momentum as time constant = 0.0 samples
+starting epoch 9 at record count 2359296, and file position 0
+already there from last epoch
+
+Starting minibatch loop, DataParallelSGD training (MyRank = 0, NumNodes = 16, NumGradientBits = 1), distributed reading is ENABLED.
+RandomOrdering: 52165 retries for 262144 elements (19.9%) to ensure window condition
+RandomOrdering: recached sequence for seed 9: 22853, 118976, ...
+ Epoch[10 of 40]-Minibatch[   1-   4, 12.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.34539884; EvalErr[0]PerSample = 0.99993896; TotalTime = 0.4218s; SamplesPerSecond = 77685.2
+ Epoch[10 of 40]-Minibatch[   5-   8, 25.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.34031753; EvalErr[0]PerSample = 0.99981689; TotalTime = 0.3370s; SamplesPerSecond = 97232.1
+ Epoch[10 of 40]-Minibatch[   9-  12, 37.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.34088263; EvalErr[0]PerSample = 0.99993896; TotalTime = 6.9494s; SamplesPerSecond = 4715.2
+ Epoch[10 of 40]-Minibatch[  13-  16, 50.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.33641621; EvalErr[0]PerSample = 0.99984741; TotalTime = 0.3370s; SamplesPerSecond = 97233.6
+ Epoch[10 of 40]-Minibatch[  17-  20, 62.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.34559013; EvalErr[0]PerSample = 0.99981689; TotalTime = 0.3407s; SamplesPerSecond = 96178.7
+ Epoch[10 of 40]-Minibatch[  21-  24, 75.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.34277102; EvalErr[0]PerSample = 0.99984741; TotalTime = 0.3399s; SamplesPerSecond = 96400.6
+ Epoch[10 of 40]-Minibatch[  25-  28, 87.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.34269865; EvalErr[0]PerSample = 0.99996948; TotalTime = 0.3403s; SamplesPerSecond = 96283.3
+ Epoch[10 of 40]-Minibatch[  29-  32, 100.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.34211183; EvalErr[0]PerSample = 0.99984741; TotalTime = 3.1427s; SamplesPerSecond = 10426.9
+Finished Epoch[10 of 40]: [Training Set] TrainLossPerSample = 9.3420234; EvalErrPerSample = 0.99987793; AvgLearningRatePerSample = 1.2207031e-06; EpochTime=12.2315
+Starting Epoch 11: learning rate per sample = 0.000001  effective momentum = 0.000000  momentum as time constant = 0.0 samples
+starting epoch 10 at record count 2621440, and file position 0
+already there from last epoch
+
+Starting minibatch loop, DataParallelSGD training (MyRank = 0, NumNodes = 16, NumGradientBits = 1), distributed reading is ENABLED.
+RandomOrdering: 51835 retries for 262144 elements (19.8%) to ensure window condition
+RandomOrdering: recached sequence for seed 10: 30505, 3552, ...
+ Epoch[11 of 40]-Minibatch[   1-   4, 12.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.33596814; EvalErr[0]PerSample = 0.99984741; TotalTime = 0.4182s; SamplesPerSecond = 78346.2
+ Epoch[11 of 40]-Minibatch[   5-   8, 25.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.33766402; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.3347s; SamplesPerSecond = 97905.8
+ Epoch[11 of 40]-Minibatch[   9-  12, 37.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.32990386; EvalErr[0]PerSample = 0.99990845; TotalTime = 3.3070s; SamplesPerSecond = 9908.5
+ Epoch[11 of 40]-Minibatch[  13-  16, 50.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.33760765; EvalErr[0]PerSample = 0.99978638; TotalTime = 0.3364s; SamplesPerSecond = 97394.0
+ Epoch[11 of 40]-Minibatch[  17-  20, 62.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.33084387; EvalErr[0]PerSample = 0.99990845; TotalTime = 0.3409s; SamplesPerSecond = 96110.8
+ Epoch[11 of 40]-Minibatch[  21-  24, 75.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.34127320; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.3389s; SamplesPerSecond = 96687.6
+ Epoch[11 of 40]-Minibatch[  25-  28, 87.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.33667147; EvalErr[0]PerSample = 0.99993896; TotalTime = 0.3352s; SamplesPerSecond = 97766.5
+ Epoch[11 of 40]-Minibatch[  29-  32, 100.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.33561726; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.3292s; SamplesPerSecond = 99548.3
+Finished Epoch[11 of 40]: [Training Set] TrainLossPerSample = 9.3356937; EvalErrPerSample = 0.99987793; AvgLearningRatePerSample = 1.2207031e-06; EpochTime=5.76244
+Starting Epoch 12: learning rate per sample = 0.000001  effective momentum = 0.000000  momentum as time constant = 0.0 samples
+starting epoch 11 at record count 2883584, and file position 0
+already there from last epoch
+
+Starting minibatch loop, DataParallelSGD training (MyRank = 0, NumNodes = 16, NumGradientBits = 1), distributed reading is ENABLED.
+RandomOrdering: 51204 retries for 262144 elements (19.5%) to ensure window condition
+RandomOrdering: recached sequence for seed 11: 121815, 105544, ...
+ Epoch[12 of 40]-Minibatch[   1-   4, 12.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.32909366; EvalErr[0]PerSample = 0.99981689; TotalTime = 3.7896s; SamplesPerSecond = 8646.9
+ Epoch[12 of 40]-Minibatch[   5-   8, 25.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.33092591; EvalErr[0]PerSample = 0.99993896; TotalTime = 0.3392s; SamplesPerSecond = 96605.5
+ Epoch[12 of 40]-Minibatch[   9-  12, 37.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.32863303; EvalErr[0]PerSample = 0.99981689; TotalTime = 0.3415s; SamplesPerSecond = 95963.3
+ Epoch[12 of 40]-Minibatch[  13-  16, 50.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.33202632; EvalErr[0]PerSample = 0.99990845; TotalTime = 4.0165s; SamplesPerSecond = 8158.3
+ Epoch[12 of 40]-Minibatch[  17-  20, 62.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.32804458; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.3445s; SamplesPerSecond = 95114.5
+ Epoch[12 of 40]-Minibatch[  21-  24, 75.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.32970978; EvalErr[0]PerSample = 0.99981689; TotalTime = 0.3464s; SamplesPerSecond = 94597.8
+ Epoch[12 of 40]-Minibatch[  25-  28, 87.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.33272040; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.3476s; SamplesPerSecond = 94271.2
+ Epoch[12 of 40]-Minibatch[  29-  32, 100.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.32699785; EvalErr[0]PerSample = 0.99996948; TotalTime = 0.3379s; SamplesPerSecond = 96971.7
+Finished Epoch[12 of 40]: [Training Set] TrainLossPerSample = 9.3297689; EvalErrPerSample = 0.99987793; AvgLearningRatePerSample = 1.2207031e-06; EpochTime=9.88514
+Starting Epoch 13: learning rate per sample = 0.000001  effective momentum = 0.000000  momentum as time constant = 0.0 samples
+starting epoch 12 at record count 3145728, and file position 0
+already there from last epoch
+
+Starting minibatch loop, DataParallelSGD training (MyRank = 0, NumNodes = 16, NumGradientBits = 1), distributed reading is ENABLED.
+RandomOrdering: 51663 retries for 262144 elements (19.7%) to ensure window condition
+RandomOrdering: recached sequence for seed 12: 78274, 38377, ...
+ Epoch[13 of 40]-Minibatch[   1-   4, 12.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.32621680; EvalErr[0]PerSample = 0.99978638; TotalTime = 3.4132s; SamplesPerSecond = 9600.3
+ Epoch[13 of 40]-Minibatch[   5-   8, 25.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.32245658; EvalErr[0]PerSample = 0.99996948; TotalTime = 0.3369s; SamplesPerSecond = 97270.5
+ Epoch[13 of 40]-Minibatch[   9-  12, 37.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.32377930; EvalErr[0]PerSample = 0.99981689; TotalTime = 0.3440s; SamplesPerSecond = 95258.3
+ Epoch[13 of 40]-Minibatch[  13-  16, 50.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.32271270; EvalErr[0]PerSample = 0.99984741; TotalTime = 0.3407s; SamplesPerSecond = 96188.1
+ Epoch[13 of 40]-Minibatch[  17-  20, 62.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.32349265; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.3380s; SamplesPerSecond = 96946.2
+ Epoch[13 of 40]-Minibatch[  21-  24, 75.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.32422818; EvalErr[0]PerSample = 0.99987793; TotalTime = 2.6214s; SamplesPerSecond = 12500.0
+ Epoch[13 of 40]-Minibatch[  25-  28, 87.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.32310911; EvalErr[0]PerSample = 0.99993896; TotalTime = 0.3328s; SamplesPerSecond = 98473.1
+ Epoch[13 of 40]-Minibatch[  29-  32, 100.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.32757856; EvalErr[0]PerSample = 0.99990845; TotalTime = 4.6106s; SamplesPerSecond = 7107.1
+Finished Epoch[13 of 40]: [Training Set] TrainLossPerSample = 9.3241967; EvalErrPerSample = 0.99987793; AvgLearningRatePerSample = 1.2207031e-06; EpochTime=12.3596
+Starting Epoch 14: learning rate per sample = 0.000001  effective momentum = 0.000000  momentum as time constant = 0.0 samples
+starting epoch 13 at record count 3407872, and file position 0
+already there from last epoch
+
+Starting minibatch loop, DataParallelSGD training (MyRank = 0, NumNodes = 16, NumGradientBits = 1), distributed reading is ENABLED.
+RandomOrdering: 52082 retries for 262144 elements (19.9%) to ensure window condition
+RandomOrdering: recached sequence for seed 13: 51985, 68187, ...
+ Epoch[14 of 40]-Minibatch[   1-   4, 12.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.31425135; EvalErr[0]PerSample = 0.99984741; TotalTime = 0.4249s; SamplesPerSecond = 77126.2
+ Epoch[14 of 40]-Minibatch[   5-   8, 25.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.32268447; EvalErr[0]PerSample = 0.99984741; TotalTime = 0.3381s; SamplesPerSecond = 96911.5
+ Epoch[14 of 40]-Minibatch[   9-  12, 37.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.31642418; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.3374s; SamplesPerSecond = 97113.7
+ Epoch[14 of 40]-Minibatch[  13-  16, 50.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.32039954; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.3378s; SamplesPerSecond = 96990.1
+ Epoch[14 of 40]-Minibatch[  17-  20, 62.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.31990290; EvalErr[0]PerSample = 0.99993896; TotalTime = 0.3402s; SamplesPerSecond = 96323.5
+ Epoch[14 of 40]-Minibatch[  21-  24, 75.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.31507044; EvalErr[0]PerSample = 0.99984741; TotalTime = 0.3397s; SamplesPerSecond = 96474.1
+ Epoch[14 of 40]-Minibatch[  25-  28, 87.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.32153285; EvalErr[0]PerSample = 0.99987793; TotalTime = 4.3780s; SamplesPerSecond = 7484.7
+ Epoch[14 of 40]-Minibatch[  29-  32, 100.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.32141669; EvalErr[0]PerSample = 0.99990845; TotalTime = 0.3253s; SamplesPerSecond = 100738.8
+Finished Epoch[14 of 40]: [Training Set] TrainLossPerSample = 9.3189603; EvalErrPerSample = 0.99987793; AvgLearningRatePerSample = 1.2207031e-06; EpochTime=6.84379
+Starting Epoch 15: learning rate per sample = 0.000001  effective momentum = 0.000000  momentum as time constant = 0.0 samples
+starting epoch 14 at record count 3670016, and file position 0
+already there from last epoch
+
+Starting minibatch loop, DataParallelSGD training (MyRank = 0, NumNodes = 16, NumGradientBits = 1), distributed reading is ENABLED.
+RandomOrdering: 51759 retries for 262144 elements (19.7%) to ensure window condition
+RandomOrdering: recached sequence for seed 14: 48233, 36669, ...
+ Epoch[15 of 40]-Minibatch[   1-   4, 12.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.31361833; EvalErr[0]PerSample = 0.99978638; TotalTime = 0.4172s; SamplesPerSecond = 78534.0
+ Epoch[15 of 40]-Minibatch[   5-   8, 25.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.31281428; EvalErr[0]PerSample = 0.99996948; TotalTime = 0.3347s; SamplesPerSecond = 97895.3
+ Epoch[15 of 40]-Minibatch[   9-  12, 37.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.31260493; EvalErr[0]PerSample = 0.99975586; TotalTime = 0.3343s; SamplesPerSecond = 98032.1
+ Epoch[15 of 40]-Minibatch[  13-  16, 50.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.31376325; EvalErr[0]PerSample = 0.99990845; TotalTime = 0.3384s; SamplesPerSecond = 96833.3
+ Epoch[15 of 40]-Minibatch[  17-  20, 62.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.31801079; EvalErr[0]PerSample = 0.99981689; TotalTime = 0.3426s; SamplesPerSecond = 95655.1
+ Epoch[15 of 40]-Minibatch[  21-  24, 75.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.31171136; EvalErr[0]PerSample = 0.99996948; TotalTime = 0.3363s; SamplesPerSecond = 97428.1
+ Epoch[15 of 40]-Minibatch[  25-  28, 87.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.31602933; EvalErr[0]PerSample = 0.99993896; TotalTime = 0.3368s; SamplesPerSecond = 97305.2
+ Epoch[15 of 40]-Minibatch[  29-  32, 100.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.31367983; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.3316s; SamplesPerSecond = 98814.6
+Finished Epoch[15 of 40]: [Training Set] TrainLossPerSample = 9.314029; EvalErrPerSample = 0.99987793; AvgLearningRatePerSample = 1.2207031e-06; EpochTime=2.79372
+Starting Epoch 16: learning rate per sample = 0.000001  effective momentum = 0.000000  momentum as time constant = 0.0 samples
+starting epoch 15 at record count 3932160, and file position 0
+already there from last epoch
+
+Starting minibatch loop, DataParallelSGD training (MyRank = 0, NumNodes = 16, NumGradientBits = 1), distributed reading is ENABLED.
+RandomOrdering: 52034 retries for 262144 elements (19.8%) to ensure window condition
+RandomOrdering: recached sequence for seed 15: 130193, 25056, ...
+ Epoch[16 of 40]-Minibatch[   1-   4, 12.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.30551040; EvalErr[0]PerSample = 0.99984741; TotalTime = 0.4226s; SamplesPerSecond = 77537.2
+ Epoch[16 of 40]-Minibatch[   5-   8, 25.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.30853938; EvalErr[0]PerSample = 0.99984741; TotalTime = 0.3379s; SamplesPerSecond = 96969.1
+ Epoch[16 of 40]-Minibatch[   9-  12, 37.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.31015755; EvalErr[0]PerSample = 0.99984741; TotalTime = 0.3378s; SamplesPerSecond = 97002.1
+ Epoch[16 of 40]-Minibatch[  13-  16, 50.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.31127582; EvalErr[0]PerSample = 0.99993896; TotalTime = 0.3426s; SamplesPerSecond = 95637.8
+ Epoch[16 of 40]-Minibatch[  17-  20, 62.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.31051588; EvalErr[0]PerSample = 0.99990845; TotalTime = 0.3394s; SamplesPerSecond = 96537.2
+ Epoch[16 of 40]-Minibatch[  21-  24, 75.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.30523686; EvalErr[0]PerSample = 0.99984741; TotalTime = 3.2039s; SamplesPerSecond = 10227.5
+ Epoch[16 of 40]-Minibatch[  25-  28, 87.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.31458102; EvalErr[0]PerSample = 0.99990845; TotalTime = 0.3336s; SamplesPerSecond = 98219.5
+ Epoch[16 of 40]-Minibatch[  29-  32, 100.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.30923146; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.3317s; SamplesPerSecond = 98789.0
+Finished Epoch[16 of 40]: [Training Set] TrainLossPerSample = 9.309381; EvalErrPerSample = 0.99987793; AvgLearningRatePerSample = 1.2207031e-06; EpochTime=5.67204
+Starting Epoch 17: learning rate per sample = 0.000001  effective momentum = 0.000000  momentum as time constant = 0.0 samples
+starting epoch 16 at record count 4194304, and file position 0
+already there from last epoch
+
+Starting minibatch loop, DataParallelSGD training (MyRank = 0, NumNodes = 16, NumGradientBits = 1), distributed reading is ENABLED.
+RandomOrdering: 51775 retries for 262144 elements (19.8%) to ensure window condition
+RandomOrdering: recached sequence for seed 16: 31105, 35880, ...
+ Epoch[17 of 40]-Minibatch[   1-   4, 12.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.29712382; EvalErr[0]PerSample = 0.99990845; TotalTime = 0.4297s; SamplesPerSecond = 76264.4
+ Epoch[17 of 40]-Minibatch[   5-   8, 25.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.30553116; EvalErr[0]PerSample = 0.99978638; TotalTime = 0.3448s; SamplesPerSecond = 95025.4
+ Epoch[17 of 40]-Minibatch[   9-  12, 37.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.30747204; EvalErr[0]PerSample = 0.99990845; TotalTime = 0.3425s; SamplesPerSecond = 95674.4
+ Epoch[17 of 40]-Minibatch[  13-  16, 50.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.30765471; EvalErr[0]PerSample = 0.99978638; TotalTime = 0.3384s; SamplesPerSecond = 96845.3
+ Epoch[17 of 40]-Minibatch[  17-  20, 62.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.30350845; EvalErr[0]PerSample = 0.99990845; TotalTime = 0.3390s; SamplesPerSecond = 96674.2
+ Epoch[17 of 40]-Minibatch[  21-  24, 75.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.30731852; EvalErr[0]PerSample = 0.99993896; TotalTime = 0.3375s; SamplesPerSecond = 97096.1
+ Epoch[17 of 40]-Minibatch[  25-  28, 87.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.30474354; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.3367s; SamplesPerSecond = 97328.6
+ Epoch[17 of 40]-Minibatch[  29-  32, 100.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.30663669; EvalErr[0]PerSample = 0.99990845; TotalTime = 0.3327s; SamplesPerSecond = 98482.8
+Finished Epoch[17 of 40]: [Training Set] TrainLossPerSample = 9.3049986; EvalErrPerSample = 0.99987793; AvgLearningRatePerSample = 1.2207031e-06; EpochTime=6.84987
+Starting Epoch 18: learning rate per sample = 0.000001  effective momentum = 0.000000  momentum as time constant = 0.0 samples
+starting epoch 17 at record count 4456448, and file position 0
+already there from last epoch
+
+Starting minibatch loop, DataParallelSGD training (MyRank = 0, NumNodes = 16, NumGradientBits = 1), distributed reading is ENABLED.
+RandomOrdering: 51717 retries for 262144 elements (19.7%) to ensure window condition
+RandomOrdering: recached sequence for seed 17: 94127, 56459, ...
+ Epoch[18 of 40]-Minibatch[   1-   4, 12.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.30492736; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.4339s; SamplesPerSecond = 75514.7
+ Epoch[18 of 40]-Minibatch[   5-   8, 25.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.29877798; EvalErr[0]PerSample = 0.99981689; TotalTime = 0.3527s; SamplesPerSecond = 92903.3
+ Epoch[18 of 40]-Minibatch[   9-  12, 37.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.29945280; EvalErr[0]PerSample = 0.99993896; TotalTime = 3.0122s; SamplesPerSecond = 10878.4
+ Epoch[18 of 40]-Minibatch[  13-  16, 50.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.29702207; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.3346s; SamplesPerSecond = 97934.8
+ Epoch[18 of 40]-Minibatch[  17-  20, 62.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.29767117; EvalErr[0]PerSample = 0.99981689; TotalTime = 0.3446s; SamplesPerSecond = 95094.1
+ Epoch[18 of 40]-Minibatch[  21-  24, 75.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.30264202; EvalErr[0]PerSample = 0.99984741; TotalTime = 0.3438s; SamplesPerSecond = 95304.3
+ Epoch[18 of 40]-Minibatch[  25-  28, 87.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.30265167; EvalErr[0]PerSample = 0.99993896; TotalTime = 0.3389s; SamplesPerSecond = 96678.2
+ Epoch[18 of 40]-Minibatch[  29-  32, 100.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.30374500; EvalErr[0]PerSample = 0.99990845; TotalTime = 0.3354s; SamplesPerSecond = 97695.6
+Finished Epoch[18 of 40]: [Training Set] TrainLossPerSample = 9.3008613; EvalErrPerSample = 0.99987793; AvgLearningRatePerSample = 1.2207031e-06; EpochTime=5.51823
+Starting Epoch 19: learning rate per sample = 0.000001  effective momentum = 0.000000  momentum as time constant = 0.0 samples
+starting epoch 18 at record count 4718592, and file position 0
+already there from last epoch
+
+Starting minibatch loop, DataParallelSGD training (MyRank = 0, NumNodes = 16, NumGradientBits = 1), distributed reading is ENABLED.
+RandomOrdering: 51966 retries for 262144 elements (19.8%) to ensure window condition
+RandomOrdering: recached sequence for seed 18: 78280, 106391, ...
+ Epoch[19 of 40]-Minibatch[   1-   4, 12.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.29701877; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.4214s; SamplesPerSecond = 77752.1
+ Epoch[19 of 40]-Minibatch[   5-   8, 25.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.29638442; EvalErr[0]PerSample = 0.99978638; TotalTime = 0.3394s; SamplesPerSecond = 96540.6
+ Epoch[19 of 40]-Minibatch[   9-  12, 37.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.29646669; EvalErr[0]PerSample = 0.99990845; TotalTime = 0.3373s; SamplesPerSecond = 97147.7
+ Epoch[19 of 40]-Minibatch[  13-  16, 50.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.29444769; EvalErr[0]PerSample = 0.99993896; TotalTime = 0.3357s; SamplesPerSecond = 97607.5
+ Epoch[19 of 40]-Minibatch[  17-  20, 62.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.29725941; EvalErr[0]PerSample = 0.99981689; TotalTime = 0.3363s; SamplesPerSecond = 97430.7
+ Epoch[19 of 40]-Minibatch[  21-  24, 75.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.30121672; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.3340s; SamplesPerSecond = 98103.4
+ Epoch[19 of 40]-Minibatch[  25-  28, 87.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.29755263; EvalErr[0]PerSample = 0.99990845; TotalTime = 0.3358s; SamplesPerSecond = 97574.0
+ Epoch[19 of 40]-Minibatch[  29-  32, 100.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.29527110; EvalErr[0]PerSample = 0.99990845; TotalTime = 3.0063s; SamplesPerSecond = 10899.7
+Finished Epoch[19 of 40]: [Training Set] TrainLossPerSample = 9.2969522; EvalErrPerSample = 0.99987793; AvgLearningRatePerSample = 1.2207031e-06; EpochTime=5.46878
+Starting Epoch 20: learning rate per sample = 0.000001  effective momentum = 0.000000  momentum as time constant = 0.0 samples
+starting epoch 19 at record count 4980736, and file position 0
+already there from last epoch
+
+Starting minibatch loop, DataParallelSGD training (MyRank = 0, NumNodes = 16, NumGradientBits = 1), distributed reading is ENABLED.
+RandomOrdering: 51851 retries for 262144 elements (19.8%) to ensure window condition
+RandomOrdering: recached sequence for seed 19: 36447, 19663, ...
+ Epoch[20 of 40]-Minibatch[   1-   4, 12.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.29468177; EvalErr[0]PerSample = 0.99996948; TotalTime = 0.4278s; SamplesPerSecond = 76591.3
+ Epoch[20 of 40]-Minibatch[   5-   8, 25.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.28946826; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.3379s; SamplesPerSecond = 96965.1
+ Epoch[20 of 40]-Minibatch[   9-  12, 37.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.29239631; EvalErr[0]PerSample = 0.99981689; TotalTime = 4.3889s; SamplesPerSecond = 7466.0
+ Epoch[20 of 40]-Minibatch[  13-  16, 50.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.29098646; EvalErr[0]PerSample = 0.99984741; TotalTime = 0.3426s; SamplesPerSecond = 95633.6
+ Epoch[20 of 40]-Minibatch[  17-  20, 62.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.29338442; EvalErr[0]PerSample = 0.99969482; TotalTime = 0.3379s; SamplesPerSecond = 96984.3
+ Epoch[20 of 40]-Minibatch[  21-  24, 75.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.29391062; EvalErr[0]PerSample = 0.99990845; TotalTime = 0.3356s; SamplesPerSecond = 97648.2
+ Epoch[20 of 40]-Minibatch[  25-  28, 87.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.29365158; EvalErr[0]PerSample = 0.99993896; TotalTime = 0.3338s; SamplesPerSecond = 98181.0
+ Epoch[20 of 40]-Minibatch[  29-  32, 100.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.29747759; EvalErr[0]PerSample = 0.99996948; TotalTime = 0.3278s; SamplesPerSecond = 99963.7
+Finished Epoch[20 of 40]: [Training Set] TrainLossPerSample = 9.2932446; EvalErrPerSample = 0.99987793; AvgLearningRatePerSample = 1.2207031e-06; EpochTime=6.85393
+Starting Epoch 21: learning rate per sample = 0.000001  effective momentum = 0.000000  momentum as time constant = 0.0 samples
+starting epoch 20 at record count 5242880, and file position 0
+already there from last epoch
+
+Starting minibatch loop, DataParallelSGD training (MyRank = 0, NumNodes = 16, NumGradientBits = 1), distributed reading is ENABLED.
+RandomOrdering: 51021 retries for 262144 elements (19.5%) to ensure window condition
+RandomOrdering: recached sequence for seed 20: 39700, 20118, ...
+ Epoch[21 of 40]-Minibatch[   1-   4, 12.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.28929541; EvalErr[0]PerSample = 0.99975586; TotalTime = 0.4299s; SamplesPerSecond = 76214.2
+ Epoch[21 of 40]-Minibatch[   5-   8, 25.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.28737420; EvalErr[0]PerSample = 0.99981689; TotalTime = 0.3435s; SamplesPerSecond = 95401.4
+ Epoch[21 of 40]-Minibatch[   9-  12, 37.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.29086834; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.3434s; SamplesPerSecond = 95427.8
+ Epoch[21 of 40]-Minibatch[  13-  16, 50.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.28620371; EvalErr[0]PerSample = 0.99993896; TotalTime = 0.3388s; SamplesPerSecond = 96718.1
+ Epoch[21 of 40]-Minibatch[  17-  20, 62.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.29149339; EvalErr[0]PerSample = 0.99990845; TotalTime = 4.1555s; SamplesPerSecond = 7885.5
+ Epoch[21 of 40]-Minibatch[  21-  24, 75.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.29093175; EvalErr[0]PerSample = 0.99990845; TotalTime = 0.3428s; SamplesPerSecond = 95594.0
+ Epoch[21 of 40]-Minibatch[  25-  28, 87.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.29302360; EvalErr[0]PerSample = 0.99984741; TotalTime = 0.3430s; SamplesPerSecond = 95526.8
+ Epoch[21 of 40]-Minibatch[  29-  32, 100.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.28871147; EvalErr[0]PerSample = 0.99996948; TotalTime = 3.6479s; SamplesPerSecond = 8982.8
+Finished Epoch[21 of 40]: [Training Set] TrainLossPerSample = 9.2897377; EvalErrPerSample = 0.99987793; AvgLearningRatePerSample = 1.2207031e-06; EpochTime=9.96638
+Starting Epoch 22: learning rate per sample = 0.000001  effective momentum = 0.000000  momentum as time constant = 0.0 samples
+starting epoch 21 at record count 5505024, and file position 0
+already there from last epoch
+
+Starting minibatch loop, DataParallelSGD training (MyRank = 0, NumNodes = 16, NumGradientBits = 1), distributed reading is ENABLED.
+RandomOrdering: 51889 retries for 262144 elements (19.8%) to ensure window condition
+RandomOrdering: recached sequence for seed 21: 97834, 43730, ...
+ Epoch[22 of 40]-Minibatch[   1-   4, 12.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.28693022; EvalErr[0]PerSample = 0.99993896; TotalTime = 0.4255s; SamplesPerSecond = 77016.0
+ Epoch[22 of 40]-Minibatch[   5-   8, 25.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.28115444; EvalErr[0]PerSample = 0.99981689; TotalTime = 0.3393s; SamplesPerSecond = 96573.9
+ Epoch[22 of 40]-Minibatch[   9-  12, 37.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.28259960; EvalErr[0]PerSample = 0.99981689; TotalTime = 3.7471s; SamplesPerSecond = 8745.0
+ Epoch[22 of 40]-Minibatch[  13-  16, 50.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.28829484; EvalErr[0]PerSample = 0.99993896; TotalTime = 0.3395s; SamplesPerSecond = 96511.9
+ Epoch[22 of 40]-Minibatch[  17-  20, 62.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.28855073; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.3415s; SamplesPerSecond = 95939.7
+ Epoch[22 of 40]-Minibatch[  21-  24, 75.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.28906763; EvalErr[0]PerSample = 0.99984741; TotalTime = 0.3398s; SamplesPerSecond = 96447.1
+ Epoch[22 of 40]-Minibatch[  25-  28, 87.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.28849462; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.3386s; SamplesPerSecond = 96783.5
+ Epoch[22 of 40]-Minibatch[  29-  32, 100.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.28616475; EvalErr[0]PerSample = 0.99990845; TotalTime = 0.3309s; SamplesPerSecond = 99012.8
+Finished Epoch[22 of 40]: [Training Set] TrainLossPerSample = 9.2864071; EvalErrPerSample = 0.99987793; AvgLearningRatePerSample = 1.2207031e-06; EpochTime=6.22451
+Starting Epoch 23: learning rate per sample = 0.000001  effective momentum = 0.000000  momentum as time constant = 0.0 samples
+starting epoch 22 at record count 5767168, and file position 0
+already there from last epoch
+
+Starting minibatch loop, DataParallelSGD training (MyRank = 0, NumNodes = 16, NumGradientBits = 1), distributed reading is ENABLED.
+RandomOrdering: 52447 retries for 262144 elements (20.0%) to ensure window condition
+RandomOrdering: recached sequence for seed 22: 25904, 94199, ...
+ Epoch[23 of 40]-Minibatch[   1-   4, 12.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.28395234; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.4236s; SamplesPerSecond = 77349.8
+ Epoch[23 of 40]-Minibatch[   5-   8, 25.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.27796380; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.3381s; SamplesPerSecond = 96908.3
+ Epoch[23 of 40]-Minibatch[   9-  12, 37.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.28401244; EvalErr[0]PerSample = 0.99981689; TotalTime = 0.3375s; SamplesPerSecond = 97086.3
+ Epoch[23 of 40]-Minibatch[  13-  16, 50.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.28202070; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.3357s; SamplesPerSecond = 97605.1
+ Epoch[23 of 40]-Minibatch[  17-  20, 62.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.28258868; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.3356s; SamplesPerSecond = 97644.4
+ Epoch[23 of 40]-Minibatch[  21-  24, 75.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.28418599; EvalErr[0]PerSample = 0.99981689; TotalTime = 0.3362s; SamplesPerSecond = 97452.5
+ Epoch[23 of 40]-Minibatch[  25-  28, 87.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.28577757; EvalErr[0]PerSample = 0.99996948; TotalTime = 0.3363s; SamplesPerSecond = 97431.3
+ Epoch[23 of 40]-Minibatch[  29-  32, 100.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.28530931; EvalErr[0]PerSample = 0.99990845; TotalTime = 0.3295s; SamplesPerSecond = 99438.0
+Finished Epoch[23 of 40]: [Training Set] TrainLossPerSample = 9.2832264; EvalErrPerSample = 0.99987793; AvgLearningRatePerSample = 1.2207031e-06; EpochTime=2.79525
+Starting Epoch 24: learning rate per sample = 0.000001  effective momentum = 0.000000  momentum as time constant = 0.0 samples
+starting epoch 23 at record count 6029312, and file position 0
+already there from last epoch
+
+Starting minibatch loop, DataParallelSGD training (MyRank = 0, NumNodes = 16, NumGradientBits = 1), distributed reading is ENABLED.
+RandomOrdering: 51702 retries for 262144 elements (19.7%) to ensure window condition
+RandomOrdering: recached sequence for seed 23: 90768, 33814, ...
+ Epoch[24 of 40]-Minibatch[   1-   4, 12.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.27700920; EvalErr[0]PerSample = 0.99972534; TotalTime = 0.4179s; SamplesPerSecond = 78407.7
+ Epoch[24 of 40]-Minibatch[   5-   8, 25.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.28112157; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.3358s; SamplesPerSecond = 97578.1
+ Epoch[24 of 40]-Minibatch[   9-  12, 37.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.28061387; EvalErr[0]PerSample = 0.99996948; TotalTime = 0.3341s; SamplesPerSecond = 98073.4
+ Epoch[24 of 40]-Minibatch[  13-  16, 50.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.28351578; EvalErr[0]PerSample = 0.99984741; TotalTime = 4.3231s; SamplesPerSecond = 7579.7
+ Epoch[24 of 40]-Minibatch[  17-  20, 62.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.27760465; EvalErr[0]PerSample = 0.99981689; TotalTime = 0.3360s; SamplesPerSecond = 97528.2
+ Epoch[24 of 40]-Minibatch[  21-  24, 75.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.28328820; EvalErr[0]PerSample = 0.99996948; TotalTime = 0.3384s; SamplesPerSecond = 96843.6
+ Epoch[24 of 40]-Minibatch[  25-  28, 87.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.27974683; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.3353s; SamplesPerSecond = 97721.3
+ Epoch[24 of 40]-Minibatch[  29-  32, 100.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.27873935; EvalErr[0]PerSample = 0.99993896; TotalTime = 0.3308s; SamplesPerSecond = 99046.4
+Finished Epoch[24 of 40]: [Training Set] TrainLossPerSample = 9.2802049; EvalErrPerSample = 0.99987793; AvgLearningRatePerSample = 1.2207031e-06; EpochTime=9.59457
+Starting Epoch 25: learning rate per sample = 0.000001  effective momentum = 0.000000  momentum as time constant = 0.0 samples
+starting epoch 24 at record count 6291456, and file position 0
+already there from last epoch
+
+Starting minibatch loop, DataParallelSGD training (MyRank = 0, NumNodes = 16, NumGradientBits = 1), distributed reading is ENABLED.
+RandomOrdering: 51884 retries for 262144 elements (19.8%) to ensure window condition
+RandomOrdering: recached sequence for seed 24: 35608, 115906, ...
+ Epoch[25 of 40]-Minibatch[   1-   4, 12.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.27688226; EvalErr[0]PerSample = 0.99975586; TotalTime = 0.4294s; SamplesPerSecond = 76303.3
+ Epoch[25 of 40]-Minibatch[   5-   8, 25.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.27487865; EvalErr[0]PerSample = 0.99990845; TotalTime = 0.3427s; SamplesPerSecond = 95607.7
+ Epoch[25 of 40]-Minibatch[   9-  12, 37.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.27889462; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.3511s; SamplesPerSecond = 93325.3
+ Epoch[25 of 40]-Minibatch[  13-  16, 50.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.27693707; EvalErr[0]PerSample = 0.99990845; TotalTime = 0.3413s; SamplesPerSecond = 95995.6
+ Epoch[25 of 40]-Minibatch[  17-  20, 62.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.27733111; EvalErr[0]PerSample = 0.99987793; TotalTime = 2.9977s; SamplesPerSecond = 10931.1
+ Epoch[25 of 40]-Minibatch[  21-  24, 75.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.27964672; EvalErr[0]PerSample = 0.99981689; TotalTime = 0.3309s; SamplesPerSecond = 99035.6
+ Epoch[25 of 40]-Minibatch[  25-  28, 87.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.27696271; EvalErr[0]PerSample = 0.99990845; TotalTime = 4.5270s; SamplesPerSecond = 7238.3
+ Epoch[25 of 40]-Minibatch[  29-  32, 100.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.27704331; EvalErr[0]PerSample = 0.99996948; TotalTime = 0.3349s; SamplesPerSecond = 97855.2
+Finished Epoch[25 of 40]: [Training Set] TrainLossPerSample = 9.2773221; EvalErrPerSample = 0.99987793; AvgLearningRatePerSample = 1.2207031e-06; EpochTime=9.67692
+Starting Epoch 26: learning rate per sample = 0.000001  effective momentum = 0.000000  momentum as time constant = 0.0 samples
+starting epoch 25 at record count 6553600, and file position 0
+already there from last epoch
+
+Starting minibatch loop, DataParallelSGD training (MyRank = 0, NumNodes = 16, NumGradientBits = 1), distributed reading is ENABLED.
+RandomOrdering: 51748 retries for 262144 elements (19.7%) to ensure window condition
+RandomOrdering: recached sequence for seed 25: 15329, 5761, ...
+ Epoch[26 of 40]-Minibatch[   1-   4, 12.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.27456713; EvalErr[0]PerSample = 0.99975586; TotalTime = 4.6011s; SamplesPerSecond = 7121.8
+ Epoch[26 of 40]-Minibatch[   5-   8, 25.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.27280928; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.3398s; SamplesPerSecond = 96435.8
+ Epoch[26 of 40]-Minibatch[   9-  12, 37.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.27535757; EvalErr[0]PerSample = 0.99996948; TotalTime = 0.3412s; SamplesPerSecond = 96037.0
+ Epoch[26 of 40]-Minibatch[  13-  16, 50.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.27238721; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.3435s; SamplesPerSecond = 95382.0
+ Epoch[26 of 40]-Minibatch[  17-  20, 62.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.27274214; EvalErr[0]PerSample = 0.99981689; TotalTime = 0.3432s; SamplesPerSecond = 95481.2
+ Epoch[26 of 40]-Minibatch[  21-  24, 75.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.27555197; EvalErr[0]PerSample = 0.99993896; TotalTime = 0.3433s; SamplesPerSecond = 95452.8
+ Epoch[26 of 40]-Minibatch[  25-  28, 87.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.27596681; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.3399s; SamplesPerSecond = 96402.0
+ Epoch[26 of 40]-Minibatch[  29-  32, 100.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.27725109; EvalErr[0]PerSample = 0.99990845; TotalTime = 0.3327s; SamplesPerSecond = 98485.8
+Finished Epoch[26 of 40]: [Training Set] TrainLossPerSample = 9.2745792; EvalErrPerSample = 0.99987793; AvgLearningRatePerSample = 1.2207031e-06; EpochTime=7.00725
+Starting Epoch 27: learning rate per sample = 0.000001  effective momentum = 0.000000  momentum as time constant = 0.0 samples
+starting epoch 26 at record count 6815744, and file position 0
+already there from last epoch
+
+Starting minibatch loop, DataParallelSGD training (MyRank = 0, NumNodes = 16, NumGradientBits = 1), distributed reading is ENABLED.
+RandomOrdering: 51395 retries for 262144 elements (19.6%) to ensure window condition
+RandomOrdering: recached sequence for seed 26: 12641, 96843, ...
+ Epoch[27 of 40]-Minibatch[   1-   4, 12.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.27540852; EvalErr[0]PerSample = 0.99990845; TotalTime = 0.4192s; SamplesPerSecond = 78167.0
+ Epoch[27 of 40]-Minibatch[   5-   8, 25.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.26776242; EvalErr[0]PerSample = 0.99975586; TotalTime = 0.3354s; SamplesPerSecond = 97692.2
+ Epoch[27 of 40]-Minibatch[   9-  12, 37.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.27245484; EvalErr[0]PerSample = 0.99993896; TotalTime = 0.3323s; SamplesPerSecond = 98607.0
+ Epoch[27 of 40]-Minibatch[  13-  16, 50.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.27538005; EvalErr[0]PerSample = 0.99987793; TotalTime = 0.3353s; SamplesPerSecond = 97735.9
+ Epoch[27 of 40]-Minibatch[  17-  20, 62.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.26808372; EvalErr[0]PerSample = 0.99984741; TotalTime = 0.3351s; SamplesPerSecond = 97780.8
+ Epoch[27 of 40]-Minibatch[  21-  24, 75.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.27039695; EvalErr[0]PerSample = 0.99975586; TotalTime = 0.3374s; SamplesPerSecond = 97131.8
+ Epoch[27 of 40]-Minibatch[  25-  28, 87.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.27329496; EvalErr[0]PerSample = 0.99993896; TotalTime = 2.5960s; SamplesPerSecond = 12622.6
+ Epoch[27 of 40]-Minibatch[  29-  32, 100.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.27291296; EvalErr[0]PerSample = 1.00000000; TotalTime = 0.3283s; SamplesPerSecond = 99819.1
+Finished Epoch[27 of 40]: [Training Set] TrainLossPerSample = 9.2719618; EvalErrPerSample = 0.99987793; AvgLearningRatePerSample = 1.2207031e-06; EpochTime=5.04025
+Starting Epoch 28: learning rate per sample = 0.000001  effective momentum = 0.000000  momentum as time constant = 0.0 samples
+starting epoch 27 at record count 7077888, and file position 0
+already there from last epoch
+
+Starting minibatch loop, DataParallelSGD training (MyRank = 0, NumNodes = 16, NumGradientBits = 1), distributed reading is ENABLED.
+RandomOrdering: 51683 retries for 262144 elements (19.7%) to ensure window condition
+RandomOrdering: recached sequence for seed 27: 82549, 67463, ...
+ Epoch[28 of 40]-Minibatch[   1-   4, 12.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.26753719; EvalErr[0]PerSample = 0.99981689; TotalTime = 0.4280s; SamplesPerSecond = 76559.0
+ Epoch[28 of 40]-Minibatch[   5-   8, 25.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.27032089; EvalErr[0]PerSample = 0.99984741; TotalTime = 0.3394s; SamplesPerSecond = 96538.0
+ Epoch[28 of 40]-Minibatch[   9-  12, 37.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.26858109; EvalErr[0]PerSample = 0.99993896; TotalTime = 0.3388s; SamplesPerSecond = 96718.1
+ Epoch[28 of 40]-Minibatch[  13-  16, 50.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.26761541; EvalErr[0]PerSample = 0.99984741; TotalTime = 0.3378s; SamplesPerSecond = 97000.4
+ Epoch[28 of 40]-Minibatch[  17-  20, 62.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.26922308; EvalErr[0]PerSample = 0.99984741; TotalTime = 0.3369s; SamplesPerSecond = 97263.3
+ Epoch[28 of 40]-Minibatch[  21-  24, 75.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.26783508; EvalErr[0]PerSample = 0.99990845; TotalTime = 0.3362s; SamplesPerSecond = 97453.9
+ Epoch[28 of 40]-Minibatch[  25-  28, 87.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.27357404; EvalErr[0]PerSample = 0.99993896; TotalTime = 0.3360s; SamplesPerSecond = 97509.6
+ Epoch[28 of 40]-Minibatch[  29-  32, 100.0000%]: SamplesSeen = 32768; TrainLossPerSample =  9.27107002; EvalErr[0]PerSample = 0.99987793; TotalTime = 3.8823s; SamplesPerSecond = 8440.4
+Finished Epoch[28 of 40]: [Training Set] TrainLossPerSample = 9.2694696; EvalErrPerSample = 0.99987793; AvgLearningRatePerSample = 1.2207031e-06; EpochTime=6.35769
+Starting Epoch 29: learning rate per sample = 0.000001  effective momentum = 0.000000  momentum as time constant = 0.0 samples
+starting epoch 28 at record count 7340032, and file position 0
+already there from last epoch
+
+Starting minibatch loop, DataParallelSGD training (MyRank = 0, NumNodes = 16, NumGradientBits = 1), distributed reading is ENABLED.
+RandomOrdering: 52108 retries for 262144 elements (19.9%) to ensure window condition
+RandomOrdering: recached sequence for seed 28: 13250, 72168, ...
+ Epoch[29 of 40]-Minibatch[   1-   4, 12.5000%]: SamplesSeen = 32768; TrainLossPerSample =  9.26689062; EvalErr[0]PerSample = 1.00000000; TotalTime = 0.4268s; SamplesPerSecond = 76767.7
