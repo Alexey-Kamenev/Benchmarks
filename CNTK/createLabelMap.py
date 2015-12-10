@@ -1,3 +1,4 @@
 import numpy as np
-a = range(0, 10000)
-np.savetxt('./labelmap.txt', np.reshape(a, (10000, 1)), fmt='%d')
+dim = 1000
+a = range(0, dim)
+np.savetxt('./labelmap.txt', np.reshape(a, (dim, 1)), fmt='%d')

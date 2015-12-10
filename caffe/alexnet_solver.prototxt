@@ -1,5 +1,5 @@
 net: "./alexnet.prototxt"
-max_iter: 100
+max_iter: 50
 base_lr: 0.01
 lr_policy: "fixed"
 solver_mode: GPU

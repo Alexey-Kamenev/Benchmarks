@@ -2,7 +2,7 @@ import numpy as np
 import lmdb
 import caffe as c
 
-mbSize = 128
+mbSize = 256
 totalCount = mbSize * 16
 
 features = np.random.randn(totalCount, 3, 224, 224)
@@ -16,7 +16,7 @@ with db.begin(write = True) as txn:
     d.channels = features.shape[1]
     d.height = features.shape[2]
     d.width = features.shape[3]
-    d.data = features[i].tobytes()
+    d.data = features[i].tostring()
     d.label = labels[i]
     txn.put('{:08}'.format(i), d.SerializeToString())
 

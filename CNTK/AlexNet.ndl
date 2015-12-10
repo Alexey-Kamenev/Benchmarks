@@ -1,7 +1,7 @@
-load=ndlMnistMacros
+load=ndlMacros
 run=DNN
 
-ndlMnistMacros = [
+ndlMacros = [
     ImageW = 224
     ImageH = 224
     ImageC = 3
@@ -32,9 +32,9 @@ DNN=[
     # conv1
     kW1 = 11
     kH1 = 11
-    cMap1 = 64
-    hStride1 = 3
-    vStride1 = 3
+    cMap1 = 96
+    hStride1 = 4
+    vStride1 = 4
     # weight[cMap1, kW1 * kH1 * ImageC]
     conv1_act = ConvReLULayer(features, cMap1, 363, kW1, kH1, hStride1, vStride1, conv1WScale, conv1BValue)
     
@@ -48,11 +48,11 @@ DNN=[
     # conv2
     kW2 = 5
     kH2 = 5
-    cMap2 = 192
+    cMap2 = 256
     hStride2 = 1
     vStride2 = 1
     # weight[cMap2, kW2 * kH2 * cMap1]
-    conv2_act = ConvReLULayer(pool1, cMap2, 1600, kW2, kH2, hStride2, vStride2, conv2WScale, conv2BValue)
+    conv2_act = ConvReLULayer(pool1, cMap2, 2400, kW2, kH2, hStride2, vStride2, conv2WScale, conv2BValue)
 
     # pool2
     pool2W = 3
@@ -68,12 +68,12 @@ DNN=[
     hStride3 = 1
     vStride3 = 1
     # weight[cMap3, kW3 * kH3 * cMap2]
-    conv3_act = ConvReLULayer(pool2, cMap3, 1728, kW3, kH3, hStride3, vStride3, conv3WScale, conv3BValue)
+    conv3_act = ConvReLULayer(pool2, cMap3, 2304, kW3, kH3, hStride3, vStride3, conv3WScale, conv3BValue)
     
     # conv4
     kW4 = 3
     kH4 = 3
-    cMap4 = 256
+    cMap4 = 384
     hStride4 = 1
     vStride4 = 1
     # weight[cMap4, kW4 * kH4 * cMap3]
@@ -86,7 +86,7 @@ DNN=[
     hStride5 = 1
     vStride5 = 1
     # weight[cMap5, kW5 * kH5 * cMap4]
-    conv5_act = ConvReLULayer(conv4_act, cMap5, 2304, kW5, kH5, hStride5, vStride5, conv5WScale, conv5BValue)
+    conv5_act = ConvReLULayer(conv4_act, cMap5, 3456, kW5, kH5, hStride5, vStride5, conv5WScale, conv5BValue)
     
     # pool3
     pool3W = 3
@@ -96,7 +96,7 @@ DNN=[
     pool3 = MaxPooling(conv5_act, pool3W, pool3H, pool3hStride, pool3vStride)
 
     hiddenDim = 4096
-    h1 = DNNReLULayer(16384, hiddenDim, pool3, fc1WScale, fc1BValue)
+    h1 = DNNReLULayer(9216, hiddenDim, pool3, fc1WScale, fc1BValue)
     h1_d = Dropout(h1)
     h2 = DNNReLULayer(hiddenDim, hiddenDim, h1_d, fc2WScale, fc2BValue)
     h2_d = Dropout(h2)
